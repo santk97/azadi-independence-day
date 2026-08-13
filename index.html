@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>आज़ादी — The Road to Freedom</title>
+<meta name="description" content="A verified walkthrough of India's freedom struggle — timeline, freedom fighters, archival footage, and the songs that carried a nation's hope.">
+<link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <a href="#top" class="brand">
+    <svg class="chakra-mini" viewBox="0 0 100 100" id="navChakra"></svg>
+    आज़ादी
+  </a>
+  <ul>
+    <li><a href="#timeline" class="nav-link">Timeline</a></li>
+    <li><a href="#heroes" class="nav-link">Heroes</a></li>
+    <li><a href="#stories" class="nav-link">Stories</a></li>
+    <li><a href="#music" class="nav-link">Music</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
+    <svg viewBox="0 0 24 24" width="20" height="20" id="navToggleIcon"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#timeline" class="nav-mobile-link">Timeline</a>
+  <a href="#heroes" class="nav-mobile-link">Heroes</a>
+  <a href="#stories" class="nav-mobile-link">Stories</a>
+  <a href="#music" class="nav-mobile-link">Music</a>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-bg">
+    <div class="sky" id="heroSky"></div>
+    <canvas class="hero-fx" id="heroFx" aria-hidden="true"></canvas>
+    <div class="stars" id="heroStars"></div>
+
+    <div class="sun-wrap" id="heroSunWrap">
+      <div class="sun-glow"></div>
+      <svg class="hero-chakra" viewBox="0 0 100 100" id="heroChakra"></svg>
+    </div>
+
+    <div class="embers" id="heroEmbers" aria-hidden="true"></div>
+
+    <div class="skyline" id="heroSkyline" aria-hidden="true">
+      <div class="landmark landmark--fort">
+        <span class="dome dome--l"></span><span class="drum drum--l"></span>
+        <span class="dome dome--r"></span><span class="drum drum--r"></span>
+        <span class="gate"></span>
+      </div>
+      <div class="landmark landmark--gate"></div>
+      <div class="landmark landmark--parliament"><span class="dome-flat"></span></div>
+    </div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-content">
+    <span class="hero-badge"><span class="dot"></span>15 August 1947</span>
+    <h1 class="hero-deva">आज़ादी</h1>
+    <p class="hero-sub">Three and a half centuries of empire. One midnight of freedom.</p>
+    <blockquote class="hero-quote" id="heroQuote">
+      <p class="hero-quote-text" id="heroQuoteText">&ldquo;At the stroke of the midnight hour, while the world sleeps, India will awake to life and freedom.&rdquo;</p>
+      <cite id="heroQuoteCite">Jawaharlal Nehru &middot; Constituent Assembly, 14 August 1947</cite>
+    </blockquote>
+
+    <div class="hero-player" id="heroPlayer" aria-label="Independence Day music mix">
+      <div class="hp-row-top">
+        <div class="hp-disc-wrap" id="hpDiscWrap">
+          <div id="ytPlayerMount" class="hp-yt-mount"></div>
+          <img id="hpArt" class="hp-disc" src="" alt="" aria-hidden="true">
+          <div class="hp-disc-hole"></div>
+          <button class="hp-play-overlay" id="hpPlayOverlay" aria-label="Play">
+            <svg viewBox="0 0 24 24" width="16" height="16"><polygon points="6,4 20,12 6,20" fill="currentColor"/></svg>
+          </button>
+        </div>
+
+        <div class="hp-meta">
+          <span class="hp-eyebrow">Now Playing &middot; Shuffled Mix</span>
+          <div class="hp-title" id="hpTitle">Loading the mix&hellip;</div>
+          <div class="hp-artist" id="hpArtist">&nbsp;</div>
+        </div>
+
+        <div class="hp-controls">
+          <button class="hp-btn" id="hpPrev" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" width="16" height="16"><polygon points="18,4 18,20 8,12" fill="currentColor"/><rect x="5" y="4" width="2.4" height="16" fill="currentColor"/></svg>
+          </button>
+          <button class="hp-btn hp-btn-main" id="hpPlay" aria-label="Pause">
+            <svg viewBox="0 0 24 24" width="16" height="16" id="hpPlayIcon"><rect x="5" y="4" width="5" height="16" fill="currentColor"/><rect x="14" y="4" width="5" height="16" fill="currentColor"/></svg>
+          </button>
+          <button class="hp-btn" id="hpNext" aria-label="Next track">
+            <svg viewBox="0 0 24 24" width="16" height="16"><polygon points="6,4 6,20 16,12" fill="currentColor"/><rect x="16.6" y="4" width="2.4" height="16" fill="currentColor"/></svg>
+          </button>
+        </div>
+
+        <div class="hp-volume">
+          <button class="hp-btn" id="hpMute" aria-label="Mute">
+            <svg viewBox="0 0 24 24" width="16" height="16" id="hpVolIcon"><polygon points="3,9 8,9 13,4 13,20 8,15 3,15" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M18.5 6a9 9 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+          <input type="range" class="hp-volume-slider" id="hpVolume" min="0" max="100" value="70" aria-label="Volume">
+        </div>
+
+        <span class="hp-shuffle-tag" title="Playing both playlists in random order">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path d="M3 6h3.5l7 12H17M3 18h3.5l2.2-3.8M17 6h-3.3l-1 1.7M15 3l3 3-3 3M15 21l3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+
+      <div class="hp-row-seek">
+        <span class="hp-time" id="hpCurrent">0:00</span>
+        <input type="range" class="hp-seek" id="hpSeek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+        <span class="hp-time" id="hpDuration">0:00</span>
+      </div>
+    </div>
+
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </div>
+</header>
+
+<main>
+
+  <section class="intro">
+    <div class="container prose">
+      <span class="eyebrow">Before you press play</span>
+      <p>This isn't a playlist. It's a walk — through conquest and resistance, sacrifice and song, from a trading company's first charter in 1600 to a flag rising over the Red Fort in 1947.</p>
+      <p>Every figure, date, and photograph below is drawn from the historical record — Wikipedia and Wikimedia Commons for biography and portraiture, and Prasar Bharati's official archives, British Pathé, the Huntley Film Archives, CRUX, and the BBC News Archive for the moving image. Where a likeness is a painting rather than a photograph — as with the Rani of Jhansi, for whom no authenticated photograph survives — it is labelled as such.</p>
+      <p class="sources-note">Scroll for the timeline, the people, the footage, and the music.</p>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">1600 &ndash; 1947</span>
+        <h2>The Road to Freedom</h2>
+        <p>Three and a half centuries, from a trading charter to a tricolour — researched against Wikipedia and Wikimedia Commons, with a source link on every turn.</p>
+      </div>
+
+      <div class="timeline" id="timelineTrack">
+        <div class="timeline-spine"><div class="timeline-spine-fill" id="spineFill"></div></div>
+        <div id="timelineTrackInner"><!-- populated by script.js --></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="heroes">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Fifteen lives, one cause</span>
+        <h2>Who Carried It</h2>
+        <p>Portraits and dates verified against Wikipedia and Wikimedia Commons. Click a card for the full story.</p>
+      </div>
+
+      <div class="heroes-grid" id="heroesGrid"><!-- populated by script.js --></div>
+    </div>
+  </section>
+
+  <section id="stories">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The record, moving</span>
+        <h2>In Their Own Footage</h2>
+        <p>Nine moments, laid out in order, from five verified archives — British Pathé, Prasar Bharati's official record, the Huntley Film Archives, CRUX, and the BBC.</p>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/lYpgHP7hjjg" title="Jallianwala Bagh — How the Massacre Unfolded" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">13 April 1919</span>
+          <h3>Jallianwala Bagh</h3>
+          <p>No film camera recorded the massacre itself — this documentary reconstructs, from survivor testimony and the historical record, the events in the walled garden in Amritsar that hardened a nation against colonial rule.</p>
+          <span class="source-tag">Source: CRUX documentary explainer</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/MVTJGRWQzvc" title="Gandhi Leads the Salt March, 1930" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">12 March &ndash; 6 April 1930</span>
+          <h3>The Salt March</h3>
+          <p>Gandhi and a small band of followers walk 240 miles from Sabarmati to the coastal village of Dandi to make salt from the sea in open defiance of the British salt tax — a simple act that becomes the spark for nationwide civil disobedience.</p>
+          <span class="source-tag">Source: Huntley Film Archives, contemporary newsreel</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/P6njRwz_dMw" title="Mahatma Gandhi Arrives in the U.K., 1931 — British Pathé" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">September 1931</span>
+          <h3>Gandhi Goes to London</h3>
+          <p>Newsreel cameras meet Gandhi off the boat in England, there for the Second Round Table Conference — Congress's sole representative, in his own dhoti, before the British establishment. The talks collapse without an agreement on self-rule.</p>
+          <span class="source-tag">Source: British Pathé, contemporary newsreel</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/tLKArKeV0cU" title="The Trouble In India, 1942 — British Pathé" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">August 1942</span>
+          <h3>The Trouble in India</h3>
+          <p>British newsreel coverage of the unrest following the Quit India call — reported, tellingly, from the empire's own point of view, as disorder to be contained rather than a nation demanding its freedom.</p>
+          <span class="source-tag">Source: British Pathé, contemporary newsreel</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/q5XLxPayFpk" title="Azad Hind Fauj and Netaji Subhas Chandra Bose" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">1943 &ndash; 1945</span>
+          <h3>Netaji's Army</h3>
+          <p>Subhas Chandra Bose slips out of British house arrest, travels by submarine to Southeast Asia, and raises the Indian National Army to fight for freedom from outside British India's borders entirely.</p>
+          <span class="source-tag">Source: Prasar Bharati Archives, &ldquo;Azadi Ki Kahani&rdquo;</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/uGxhrBa1L00" title="India's Independence Day: The Arrival of Earl Mountbatten, 1947 — British Pathé" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">March 1947</span>
+          <h3>The Last Viceroy</h3>
+          <p>Lord Mountbatten arrives in Delhi as Britain's final Viceroy, with instructions to transfer power within months rather than years — the moment the empire's timeline compresses from decades to weeks.</p>
+          <span class="source-tag">Source: British Pathé, contemporary newsreel</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/2ClIajkFSuc" title="1,000,000 Indians On The Move, 1947 — British Pathé" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">August 1947</span>
+          <h3>A Million on the Move</h3>
+          <p>Newsreel footage of the largest mass migration in history, as Partition redraws the map and some fifteen million people cross a new border in both directions, on foot, by cart, and by train.</p>
+          <span class="source-tag">Source: British Pathé, contemporary newsreel</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/VnxirE62Yd8" title="Tryst with Destiny — Nehru's Constituent Assembly Speech, 1947" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">14 August 1947</span>
+          <h3>Tryst with Destiny</h3>
+          <p>On the eve of independence, Jawaharlal Nehru addresses the Constituent Assembly with the speech that would define the moment for generations: a pledge redeemed after generations of struggle.</p>
+          <span class="source-tag">Source: Prasar Bharati Archives, official record</span>
+        </div>
+      </div>
+
+      <div class="story reveal">
+        <div class="story-media">
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/c6ypY30oQx4" title="The Night India Became Independent — BBC News Archive" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="eyebrow">15 August 1947</span>
+          <h3>The Night India Became Free</h3>
+          <p>As the clock strikes midnight, crowds gather outside the Constituent Assembly in Delhi. Freedom arrives inseparably twinned with Partition — a joy shadowed by displacement and loss on a vast scale.</p>
+          <span class="source-tag">Source: BBC News India, From The Archives</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="music">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The soundtrack of a struggle</span>
+        <h2>What the Nation Sang</h2>
+        <p>Two playlists — the old and the new — carrying the same feeling forward.</p>
+      </div>
+
+      <div class="music-panels reveal">
+        <div class="music-panel">
+          <div class="panel-head">
+            <h3>Superhit Patriotic Anthems</h3>
+            <span class="tag">New</span>
+          </div>
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/wF_B_aagLfI?list=PL0Z67tlyTaWo-c_QyUnhsoa4cUwceCmRu" title="Superhit Patriotic Songs playlist" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <p>Teri Mitti, Vande Mataram, and the contemporary anthems that carry Independence Day into today's playlists.</p>
+        </div>
+        <div class="music-panel">
+          <div class="panel-head">
+            <h3>Timeless Classics</h3>
+            <span class="tag">Vintage</span>
+          </div>
+          <div class="frame">
+            <iframe src="https://www.youtube.com/embed/xj1Iy4nRMkc?list=PLRFwd77mDGjOG8yJ5eGrsRoXRIm2s1tOS" title="Old Patriotic Songs playlist" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <p>The old guard of desh bhakti cinema — songs that first taught generations of India what pride sounded like.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="hero-modal" id="heroModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="hm-backdrop"></div>
+  <div class="hm-panel">
+    <button class="hm-close" id="hmClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <div class="hm-media">
+      <div class="hm-img-wrap">
+        <img id="hmImg" src="" alt="">
+        <span class="hm-img-caption" id="hmImgCaption"></span>
+      </div>
+      <div class="hm-img2-wrap" id="hmImg2Wrap">
+        <img id="hmImg2" src="" alt="">
+      </div>
+    </div>
+    <div class="hm-content">
+      <span class="hm-years" id="hmYears"></span>
+      <h3 class="hm-name" id="hmName"></h3>
+      <span class="hm-role" id="hmRole"></span>
+      <span class="hm-photo-note" id="hmPhotoNote"></span>
+      <div class="hm-body" id="hmBody"></div>
+      <blockquote class="hm-quote" id="hmQuote"></blockquote>
+      <a class="hm-link" id="hmLink" href="#" target="_blank" rel="noopener noreferrer">Read the full account on Wikipedia &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <svg class="chakra-mini-lg" viewBox="0 0 100 100" id="footerChakra"></svg>
+    <div class="jai-hind">जय हिन्द</div>
+    <p class="sources">
+      <strong>Sources &amp; verification.</strong> Portraits and biographical dates cross&#8209;referenced with Wikipedia and Wikimedia Commons. Archival footage credited individually above to Prasar Bharati Archives, British Pathé, the Huntley Film Archives, CRUX, and the BBC News Archive. Where no authenticated photograph of a historical figure survives, the card notes the image is a painting or commemorative work rather than a photograph.
+    </p>
+
+    <div class="footer-credit">
+      <span class="credit-line">Made with care by <a class="credit-handle" href="https://www.instagram.com/mapmybharat/" target="_blank" rel="noopener noreferrer">@mapmybharat</a></span>
+      <a class="credit-follow" href="https://www.instagram.com/mapmybharat/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+        To know more about Bharat, follow along
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js?v=5"></script>
+</body>
+</html>
