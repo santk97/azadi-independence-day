@@ -859,21 +859,35 @@ updateSpine();
     else player.cueVideoById(id);
   }
 
-  function armFirstInteractionUnmute(){
-    const events = ["click", "keydown", "touchstart"];
-    const unmuteOnce = () => {
-      if(player && player.isMuted && player.isMuted()){
-        player.unMute();
-        player.setVolume(Number(els.volSlider ? els.volSlider.value : 70));
-        updateMuteIcon(false);
-      }
-      if(player && player.getPlayerState && player.getPlayerState() !== YT.PlayerState.PLAYING){
-        player.playVideo();
-      }
-      events.forEach(evt => document.removeEventListener(evt, unmuteOnce));
-    };
-    events.forEach(evt => document.addEventListener(evt, unmuteOnce));
+  // Browsers only allow unmuted autoplay after a user gesture on the page, so
+  // we start muted (always allowed) and unmute on the very first interaction.
+  // The listeners are armed immediately (not inside onReady) because the
+  // YouTube API loads asynchronously — a click before it's ready would
+  // otherwise be missed and never retried, leaving the mix stuck muted.
+  let userHasInteracted = false;
+
+  function tryUnmute(){
+    if(!player || !player.unMute) return;
+    player.unMute();
+    player.setVolume(Number(els.volSlider ? els.volSlider.value : 70));
+    updateMuteIcon(false);
+    if(player.getPlayerState && player.getPlayerState() !== YT.PlayerState.PLAYING){
+      player.playVideo();
+    }
   }
+
+  function armFirstInteractionUnmute(){
+    const docEvents = ["click", "keydown", "touchstart"];
+    const unmuteOnce = () => {
+      userHasInteracted = true;
+      tryUnmute();
+      docEvents.forEach(evt => document.removeEventListener(evt, unmuteOnce));
+      window.removeEventListener("scroll", unmuteOnce);
+    };
+    docEvents.forEach(evt => document.addEventListener(evt, unmuteOnce, { passive: true }));
+    window.addEventListener("scroll", unmuteOnce, { passive: true });
+  }
+  armFirstInteractionUnmute();
 
   window.onYouTubeIframeAPIReady = function(){
     player = new YT.Player("ytPlayerMount", {
@@ -885,12 +899,14 @@ updateSpine();
           playerReady = true;
           loadTrackMeta(queue[0]);
           player.setVolume(Number(els.volSlider ? els.volSlider.value : 70));
-          // Browsers only allow unmuted autoplay after user interaction with the
-          // page, so we start muted (always allowed) and unmute on first gesture.
-          player.mute();
-          updateMuteIcon(true);
-          player.playVideo();
-          armFirstInteractionUnmute();
+          if(userHasInteracted){
+            // The user already clicked/scrolled before the player finished loading.
+            tryUnmute();
+          } else {
+            player.mute();
+            updateMuteIcon(true);
+            player.playVideo();
+          }
         },
         onStateChange: function(e){
           if(e.data === YT.PlayerState.PLAYING){

@@ -267,13 +267,16 @@ h1,h2,h3,h4{
 .hero-chakra-bg{
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
   width: min(72vw, 580px);
   height: min(72vw, 580px);
   color: var(--gold);
   opacity: 0.28;
-  animation: spin 140s linear infinite;
+  animation: spinCentered 140s linear infinite;
   pointer-events: none;
+}
+@keyframes spinCentered{
+  from{ transform: translate(-50%, -50%) rotate(0deg); }
+  to{ transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .embers{
