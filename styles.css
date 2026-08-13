@@ -434,15 +434,6 @@ h1,h2,h3,h4{
   text-shadow: 0 6px 40px rgba(226,121,58,0.35);
 }
 
-.hero-sub{
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(18px, 2.4vw, 26px);
-  color: var(--ivory-dim);
-  max-width: 640px;
-}
-
 .hero-quote{
   max-width: 620px;
   min-height: 108px;
@@ -500,6 +491,41 @@ h1,h2,h3,h4{
   border-radius: 20px;
   backdrop-filter: blur(10px);
   text-align: left;
+  transition: box-shadow .3s ease;
+}
+
+/* Docked: floats fixed to the viewport once scrolled past the hero,
+   so the mix stays reachable from anywhere on the page. */
+.hero-player.docked{
+  position: fixed;
+  left: 50%;
+  top: auto;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(440px, calc(100vw - 28px));
+  max-width: none;
+  z-index: 150;
+  padding: 8px 14px;
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+  animation: dockIn .35s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes dockIn{
+  from{ opacity: 0; transform: translate(-50%, 18px); }
+  to{ opacity: 1; transform: translate(-50%, 0); }
+}
+.hero-player.docked .hp-eyebrow,
+.hero-player.docked .hp-artist,
+.hero-player.docked .hp-volume-slider,
+.hero-player.docked .hp-shuffle-tag{ display: none; }
+.hero-player.docked .hp-disc-wrap{ width: 34px; height: 34px; }
+.hero-player.docked .hp-row-top{ gap: 10px; }
+.hero-player.docked .hp-controls{ gap: 6px; }
+.hero-player.docked .hp-title{ font-size: 12.5px; }
+.hero-player.docked .hp-row-seek{ gap: 6px; }
+.hero-player.docked .hp-time{ font-size: 10px; width: 24px; }
+@media (prefers-reduced-motion: reduce){
+  .hero-player.docked{ animation: none; }
 }
 
 .hp-row-top{

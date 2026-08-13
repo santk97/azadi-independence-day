@@ -39,6 +39,23 @@ function buildChakra(svg){
 }
 ["heroChakra","navChakra","footerChakra"].forEach(id => buildChakra(document.getElementById(id)));
 
+/* ---- Dock the player once scrolled past the hero ---- */
+(function dockPlayer(){
+  const player = document.getElementById("heroPlayer");
+  const anchor = document.getElementById("heroQuote");
+  if(!player || !anchor) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Only dock once the anchor has scrolled above the viewport (not before it's reached on load).
+      const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      player.classList.toggle("docked", scrolledPast);
+    });
+  }, { threshold: 0, rootMargin: "-64px 0px 0px 0px" });
+
+  io.observe(anchor);
+})();
+
 /* ---- Mobile nav menu ---- */
 (function mobileNav(){
   const toggle = document.getElementById("navToggle");
