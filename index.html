@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>आज़ादी — The Road to Freedom</title>
 <meta name="description" content="A verified walkthrough of India's freedom struggle — timeline, freedom fighters, archival footage, and the songs that carried a nation's hope.">
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -39,7 +39,6 @@
 
     <div class="sun-wrap" id="heroSunWrap">
       <div class="sun-glow"></div>
-      <svg class="hero-chakra" viewBox="0 0 100 100" id="heroChakra"></svg>
     </div>
 
     <div class="embers" id="heroEmbers" aria-hidden="true"></div>
@@ -58,7 +57,10 @@
 
   <div class="hero-content">
     <span class="hero-badge"><span class="dot"></span>15 August 1947</span>
-    <h1 class="hero-deva">आज़ादी</h1>
+    <div class="hero-title-wrap">
+      <svg class="hero-chakra-bg" viewBox="0 0 100 100" id="heroChakraBg" aria-hidden="true"></svg>
+      <h1 class="hero-deva">आज़ादी</h1>
+    </div>
     <blockquote class="hero-quote" id="heroQuote">
       <p class="hero-quote-text" id="heroQuoteText">&ldquo;At the stroke of the midnight hour, while the world sleeps, India will awake to life and freedom.&rdquo;</p>
       <cite id="heroQuoteCite">Jawaharlal Nehru &middot; Constituent Assembly, 14 August 1947</cite>
@@ -117,15 +119,6 @@
 </header>
 
 <main>
-
-  <section class="intro">
-    <div class="container prose">
-      <span class="eyebrow">Before you press play</span>
-      <p>This isn't a playlist. It's a walk — through conquest and resistance, sacrifice and song, from a trading company's first charter in 1600 to a flag rising over the Red Fort in 1947.</p>
-      <p>Every figure, date, and photograph below is drawn from the historical record — Wikipedia and Wikimedia Commons for biography and portraiture, and Prasar Bharati's official archives, British Pathé, the Huntley Film Archives, CRUX, and the BBC News Archive for the moving image. Where a likeness is a painting rather than a photograph — as with the Rani of Jhansi, for whom no authenticated photograph survives — it is labelled as such.</p>
-      <p class="sources-note">Scroll for the timeline, the people, the footage, and the music.</p>
-    </div>
-  </section>
 
   <section id="timeline">
     <div class="container">
@@ -332,14 +325,15 @@
     <button class="hm-close" id="hmClose" aria-label="Close">
       <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
     </button>
-    <div class="hm-media">
-      <div class="hm-img-wrap">
-        <img id="hmImg" src="" alt="">
-        <span class="hm-img-caption" id="hmImgCaption"></span>
-      </div>
-      <div class="hm-img2-wrap" id="hmImg2Wrap">
-        <img id="hmImg2" src="" alt="">
-      </div>
+    <div class="hm-carousel" id="hmCarousel">
+      <div class="hm-carousel-track" id="hmCarouselTrack"><!-- slides injected by script.js --></div>
+      <button class="hm-car-arrow hm-car-prev" id="hmCarPrev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="hm-car-arrow hm-car-next" id="hmCarNext" aria-label="Next image">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="hm-car-dots" id="hmCarDots"></div>
     </div>
     <div class="hm-content">
       <span class="hm-years" id="hmYears"></span>
@@ -371,6 +365,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>

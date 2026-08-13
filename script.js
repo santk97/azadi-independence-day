@@ -37,7 +37,7 @@ function buildChakra(svg){
   }
   svg.style.color = "var(--gold)";
 }
-["heroChakra","navChakra","footerChakra"].forEach(id => buildChakra(document.getElementById(id)));
+["heroChakraBg","navChakra","footerChakra"].forEach(id => buildChakra(document.getElementById(id)));
 
 /* ---- Dock the player once scrolled past the hero ---- */
 (function dockPlayer(){
@@ -465,10 +465,11 @@ if(grid){
   const modal = document.getElementById("heroModal");
   if(!modal || !grid) return;
   const els = {
-    img: document.getElementById("hmImg"),
-    imgCaption: document.getElementById("hmImgCaption"),
-    img2Wrap: document.getElementById("hmImg2Wrap"),
-    img2: document.getElementById("hmImg2"),
+    carousel: document.getElementById("hmCarousel"),
+    track: document.getElementById("hmCarouselTrack"),
+    dots: document.getElementById("hmCarDots"),
+    prevBtn: document.getElementById("hmCarPrev"),
+    nextBtn: document.getElementById("hmCarNext"),
     years: document.getElementById("hmYears"),
     name: document.getElementById("hmName"),
     role: document.getElementById("hmRole"),
@@ -479,19 +480,39 @@ if(grid){
     closeBtn: document.getElementById("hmClose"),
   };
   let lastFocused = null;
+  let slides = [];
+  let slideIndex = 0;
+
+  function updateSlidePosition(){
+    els.track.style.transform = `translateX(-${slideIndex * 100}%)`;
+    els.dots.querySelectorAll(".hm-car-dot").forEach((d, i) => d.classList.toggle("active", i === slideIndex));
+  }
+
+  function goToSlide(i){
+    if(!slides.length) return;
+    slideIndex = ((i % slides.length) + slides.length) % slides.length;
+    updateSlidePosition();
+  }
+
+  function renderSlides(hero){
+    slides = [];
+    if(hero.img) slides.push({ src: hero.img, caption: hero.photoNote || "" });
+    (hero.images || []).forEach(src => slides.push({ src, caption: hero.imageCaption || "" }));
+
+    els.track.innerHTML = slides.map(s => `
+      <div class="hm-slide">
+        <img src="${s.src}" alt="${hero.name}" loading="lazy">
+        ${s.caption ? `<span class="hm-img-caption">${s.caption}</span>` : ""}
+      </div>
+    `).join("");
+    els.dots.innerHTML = slides.map((_, i) => `<button class="hm-car-dot${i === 0 ? " active" : ""}" aria-label="Image ${i + 1} of ${slides.length}"></button>`).join("");
+    els.carousel.classList.toggle("single", slides.length <= 1);
+    slideIndex = 0;
+    updateSlidePosition();
+  }
 
   function open(hero){
-    els.img.src = hero.img;
-    els.img.alt = hero.name;
-    els.imgCaption.textContent = hero.imageCaption || "";
-    els.imgCaption.style.display = hero.imageCaption ? "block" : "none";
-    if(hero.images && hero.images[0]){
-      els.img2.src = hero.images[0];
-      els.img2.alt = hero.name;
-      els.img2Wrap.style.display = "block";
-    } else {
-      els.img2Wrap.style.display = "none";
-    }
+    renderSlides(hero);
     els.years.textContent = hero.years;
     els.name.textContent = hero.name;
     els.role.textContent = hero.role;
@@ -524,6 +545,14 @@ if(grid){
     if(lastFocused) lastFocused.focus();
   }
 
+  els.prevBtn.addEventListener("click", () => goToSlide(slideIndex - 1));
+  els.nextBtn.addEventListener("click", () => goToSlide(slideIndex + 1));
+  els.dots.addEventListener("click", (e) => {
+    const dot = e.target.closest(".hm-car-dot");
+    if(!dot) return;
+    goToSlide(Array.from(els.dots.children).indexOf(dot));
+  });
+
   grid.addEventListener("click", (e) => {
     const card = e.target.closest(".hero-card");
     if(!card) return;
@@ -539,7 +568,12 @@ if(grid){
 
   els.closeBtn.addEventListener("click", close);
   modal.addEventListener("click", (e) => { if(e.target === modal || e.target.classList.contains("hm-backdrop")) close(); });
-  document.addEventListener("keydown", (e) => { if(e.key === "Escape" && modal.classList.contains("open")) close(); });
+  document.addEventListener("keydown", (e) => {
+    if(!modal.classList.contains("open")) return;
+    if(e.key === "Escape") close();
+    else if(e.key === "ArrowRight") goToSlide(slideIndex + 1);
+    else if(e.key === "ArrowLeft") goToSlide(slideIndex - 1);
+  });
 })();
 
 /* ---- Timeline: eras + varied card types (text / image / quote / stat) ---- */
@@ -557,7 +591,8 @@ const TIMELINE = [
     text: "The Company is dissolved and India passes directly to the British Crown. A change of masters, not of condition — but the old order of merchant-rulers is over." },
 
   { type: "era", title: "The Idea of a Nation", range: "1885 – 1919" },
-  { type: "text", year: "1885", title: "Indian National Congress Founded", link: WIKI("Indian_National_Congress"),
+  { type: "image", year: "1885", title: "Indian National Congress Founded", link: WIKI("Indian_National_Congress"),
+    img: "assets/timeline/inc_1885.jpg", imgCaption: "Delegates at the first Indian National Congress session, Bombay, 1885",
     text: "Meeting first in Bombay, the Congress becomes the organised political voice of a movement that had, until then, spoken in scattered revolts." },
   { type: "text", year: "1905", title: "Partition of Bengal & the Swadeshi Movement", link: WIKI("Partition_of_Bengal_(1905)"),
     text: "Lord Curzon divides Bengal along religious lines; the boycott of British goods that follows becomes India's first mass political mobilisation." },
@@ -567,7 +602,8 @@ const TIMELINE = [
   { type: "image", year: "1916", title: "Two Home Rule Leagues", link: WIKI("Indian_Home_Rule_movement"),
     img: "assets/heroes/tilak.png", imgCaption: "Bal Gangadhar Tilak, co-founder of the Home Rule movement",
     text: "Bal Gangadhar Tilak and Annie Besant separately launch Home Rule Leagues demanding self-government within the Empire — the first time the demand for self-rule organises itself into a nationwide campaign with branches and members." },
-  { type: "text", year: "1919", title: "Jallianwala Bagh", link: WIKI("Jallianwala_Bagh_massacre"),
+  { type: "image", year: "1919", title: "Jallianwala Bagh", link: WIKI("Jallianwala_Bagh_massacre"),
+    img: "assets/timeline/jallianwala_well.jpg", imgCaption: "The Martyrs' Well at Jallianwala Bagh, where many jumped to escape the gunfire",
     text: "Weeks after the repressive Rowlatt Act, troops under General Dyer fire without warning on an unarmed crowd in a walled garden in Amritsar on 13 April. Hundreds are killed. The massacre turns a reformist movement into a national one." },
 
   { type: "era", title: "Mass Movement", range: "1920 – 1935" },
@@ -580,7 +616,8 @@ const TIMELINE = [
     text: "Injuries from a police lathi charge during protests against the all-British Simon Commission lead to his death on 17 November. “The blows struck at me today,” he had said, “will be the last nails in the coffin of British rule.”" },
   { type: "text", year: "1929", title: "Purna Swaraj", link: WIKI("Purna_Swaraj"),
     text: "At its Lahore session in December, Congress declares complete independence — Purna Swaraj — as its goal, and fixes 26 January as a day of pledge, later adopted as Republic Day." },
-  { type: "text", year: "1930", title: "The Salt March", link: WIKI("Salt_March"),
+  { type: "image", year: "1930", title: "The Salt March", link: WIKI("Salt_March"),
+    img: "assets/timeline/salt_march.jpg", imgCaption: "Gandhi and followers on the march to Dandi, March 1930",
     text: "Gandhi walks 240 miles to the sea at Dandi to break the salt law. Civil disobedience spreads across the country within weeks, and the world's press finally starts paying attention." },
   { type: "image", year: "1931", title: "Sacrifice at Lahore, Talks in London", link: WIKI("Execution_of_Bhagat_Singh,_Rajguru_and_Sukhdev"),
     img: "assets/heroes/bhagatsingh.jpg", imgCaption: "Bhagat Singh in jail, 1927",
