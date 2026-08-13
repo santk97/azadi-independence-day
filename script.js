@@ -37,7 +37,7 @@ function buildChakra(svg){
   }
   svg.style.color = "var(--gold)";
 }
-["heroChakraBg","navChakra","footerChakra"].forEach(id => buildChakra(document.getElementById(id)));
+["heroChakraBg","navChakra","footerChakra","quizChakraIcon","quizChakraIcon2"].forEach(id => buildChakra(document.getElementById(id)));
 
 /* ---- Mobile nav menu ---- */
 (function mobileNav(){
