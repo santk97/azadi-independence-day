@@ -43,6 +43,16 @@
   let playTimer = null;
   let playIdx = 0;
   let cardOwner = null; // the .map-pin-dot currently showing the card
+  let hideTimer = null; // grace period so the pointer can travel from dot to card
+
+  function cancelHide(){
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
+  function scheduleHide(delay){
+    cancelHide();
+    hideTimer = setTimeout(hideCard, delay);
+  }
 
   /* ---------------- Pins ---------------- */
 
@@ -126,6 +136,7 @@
   }
 
   function showCard(dot){
+    cancelHide();
     const pin = dot.closest(".map-pin");
     const ev = MAP_EVENTS[Number(pin.dataset.index)];
     els.cardImg.src = ev.image;
@@ -140,6 +151,7 @@
   }
 
   function hideCard(){
+    cancelHide();
     els.card.classList.remove("open");
     cardOwner = null;
   }
@@ -253,14 +265,22 @@
   });
   els.pins.addEventListener("mouseout", (e) => {
     const dot = e.target.closest(".map-pin-dot");
-    if(dot && (!e.relatedTarget || !els.card.contains(e.relatedTarget))) hideCard();
+    // Grace period: the pointer needs a moment to cross the gap onto the
+    // card itself (WCAG 1.4.13 "hoverable") — cancelled by the card's own
+    // mouseenter, or by re-entering a dot, below.
+    if(dot && (!e.relatedTarget || !els.card.contains(e.relatedTarget))) scheduleHide(400);
   });
+  els.card.addEventListener("mouseenter", cancelHide);
+  els.card.addEventListener("mouseleave", () => scheduleHide(150));
   els.pins.addEventListener("focusin", (e) => {
     const dot = e.target.closest(".map-pin-dot");
     if(dot) showCard(dot);
   });
   els.pins.addEventListener("focusout", (e) => {
     if(!els.pins.contains(e.relatedTarget) && !els.card.contains(e.relatedTarget)) hideCard();
+  });
+  els.card.addEventListener("focusout", (e) => {
+    if(!els.card.contains(e.relatedTarget) && !els.pins.contains(e.relatedTarget)) hideCard();
   });
   els.pins.addEventListener("click", (e) => {
     const dot = e.target.closest(".map-pin-dot");
@@ -293,7 +313,10 @@
   page.querySelector(".app-page-backdrop").addEventListener("click", close);
   document.addEventListener("keydown", (e) => {
     if(!page.classList.contains("open")) return;
-    if(e.key === "Escape") close();
+    if(e.key === "Escape"){
+      if(cardOwner){ const dot = cardOwner; hideCard(); dot.focus(); }
+      else close();
+    }
   });
 
   document.getElementById("navOpenMap")?.addEventListener("click", open);
