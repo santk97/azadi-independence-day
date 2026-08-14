@@ -744,18 +744,16 @@ window.addEventListener("resize", updateSpine);
 updateSpine();
 
 /* ============================================================
-   Hero mini player — combines both playlists into one shuffled
-   queue and drives a real YouTube IFrame player behind a
-   custom spinning-disc skin.
+   Hero mini player — shuffles the site's playlist into a queue
+   and drives a real YouTube IFrame player behind a custom
+   spinning-disc skin.
    ============================================================ */
 (function heroPlayer(){
   const mount = document.getElementById("ytPlayerMount");
   if(!mount) return;
 
-  // Superhit Patriotic Anthems (PL0Z67tlyTaWo-c_QyUnhsoa4cUwceCmRu)
-  const PLAYLIST_NEW = ["wF_B_aagLfI","BKx_B1VZ2kw","nDsIy6kRhms","Ki4_Fc3XoSk","g62J-8nV5FI","5gRzF46Lo30","e4dDcVAi9Ek","Q3JMD4oaXlI","-PDi7lF7nJw","uTDMVdzIhqQ","iii1NM-Zv1g","pM2K5UNN6CE","2n3iW1V-wIE","hWJxJhsVWio","Pe5DJ2OxnNo","9ceBNvRPGeo","7vNQZEMgo4w","x5fYTPvrz4g","xhz0tRDKfOU","XRlwCsP--l8","YBp2OcI-nGs","6KUX6O88ntk","J8SbJ4Cq4fo","YHmYop9Bc_Q","pAzu7b4mm1U","4nCshJBODT4","dNNCGRhJmCU","tionpZAVPd4","R1nFmZMtw_s","KMjXzjpSZNI","4XSGQY3oZUo","m6blCId59qc","4tIRhHs7gLo","Dmbf6TcQRuc","_otYHRxJ7JA","bc1FIpQbEog","bxPuvwBnGEk","x4z8P9_eyZ8","g3fnG1LSRBQ","chxAfHiePAA","VYKYSqZ3Yt0","6LWLPlqCFX0","s6Gz1Yffbzw","7yd-XJYy3HI","diT_XLLJiF8","NvFyAlhctZU","XGSEbIYoPE4","gr3h8rOKbq4","Tczhb4vyEUk","hj17TJ1tsxE","oX_iH0CbZzg","cDBmNIlsr7A","xp1xf0BPwh0"];
-  // Timeless Classics (PLRFwd77mDGjOG8yJ5eGrsRoXRIm2s1tOS)
-  const PLAYLIST_OLD = ["xj1Iy4nRMkc","kvSeGR-qcz0","DFvDSLxcWhk","7Os_8BN2qmw","i0PKCMhFdjk","YmYFRNXrPdk","8SE1wWAMIu8","-a641b2vjKc","cmafSad02ZA","n6yTCblgAQQ","PIKLTEtntI8","jDn2bn7_YSM","-0kPkqkrHPk","e1aI46jBNmA","NjfxTxPBzlY","-jf6pwtPqCs","0vh8_1ruoRo","nBbmW9JpbUg"];
+  // "independence" playlist (PLSkEjGYspQWw) — 44 songs
+  const PLAYLIST = ["wDheWYmNEhQ","l71aOtTJ1gE","wF_B_aagLfI","BKx_B1VZ2kw","nDsIy6kRhms","g62J-8nV5FI","Q3JMD4oaXlI","iii1NM-Zv1g","2n3iW1V-wIE","x5fYTPvrz4g","YHmYop9Bc_Q","TdmUuRELfWI","jDn2bn7_YSM","s_-tthrE0Hg","phXc6nu1vG0","c769V25pX08","4tiVPuLbbHg","yRmnGwqyEJY","-Dm-iScM23Y","GJEjUd0AjM4","OSEw6kv70Xw","1JRIhF3kh_8","c6PHJg9D_Sk","BeqcIyuNVZI","ddrx8288qwA","n6yTCblgAQQ","PIKLTEtntI8","yy8J1Z65Rzs","-0kPkqkrHPk","lWsGPxp4s1w","e1aI46jBNmA","LLw0-5lmxR4","ummGYA6gWME","MXg6Usdjl5c","X-DDknSzELI","9iIX4PBplAY","jKzCPLu98O4","Q0ySWaet1_U","cVQmLKVvd0M","JK-0qmxim80","CBtiEZNQimI","sSsw7QPrUk0","FGjQIHVUECk","diT_XLLJiF8"];
 
   function shuffle(arr){
     const a = arr.slice();
@@ -766,7 +764,7 @@ updateSpine();
     return a;
   }
 
-  const queue = shuffle([...new Set([...PLAYLIST_NEW, ...PLAYLIST_OLD])]);
+  const queue = shuffle([...new Set(PLAYLIST)]);
   let currentIndex = 0;
   let player = null;
   let playerReady = false;

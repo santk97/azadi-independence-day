@@ -1312,6 +1312,11 @@ body.modal-open{ overflow: hidden; }
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
+.music-panels--single{
+  grid-template-columns: 1fr;
+  max-width: 640px;
+  margin: 0 auto;
+}
 .music-panel{
   background: var(--ink-card);
   border: 1px solid var(--hairline);
