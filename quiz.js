@@ -34,9 +34,10 @@
     finalDifficulty: document.getElementById("quizFinalDifficulty"),
     playAgainBtn: document.getElementById("quizPlayAgainBtn"),
     backBtn: document.getElementById("quizBackBtn"),
+    hintBtn: document.getElementById("quizHintBtn"),
   };
 
-  const state = { queue: [], index: 0, score: 0, name: "", startTime: 0, timerInterval: null, awaitingNext: false };
+  const state = { queue: [], index: 0, score: 0, name: "", startTime: 0, timerInterval: null, awaitingNext: false, hintUsed: false };
   let lastFocused = null;
 
   function shuffleArr(arr){
@@ -105,6 +106,19 @@
       `<button class="quiz-option" data-correct="${o.isCorrect}">${o.text}</button>`
     ).join("");
     els.feedback.hidden = true;
+    els.hintBtn.disabled = state.hintUsed;
+  }
+
+  function useHint(){
+    if(state.hintUsed || state.awaitingNext) return;
+    const wrongBtns = Array.from(els.options.querySelectorAll(".quiz-option"))
+      .filter(b => b.dataset.correct === "false" && !b.disabled);
+    if(!wrongBtns.length) return;
+    const pick = wrongBtns[Math.floor(Math.random() * wrongBtns.length)];
+    pick.disabled = true;
+    pick.classList.add("hint-eliminated");
+    state.hintUsed = true;
+    els.hintBtn.disabled = true;
   }
 
   function handleAnswer(btn){
@@ -113,6 +127,7 @@
     const q = state.queue[state.index];
     const allBtns = Array.from(els.options.querySelectorAll(".quiz-option"));
     allBtns.forEach(b => b.disabled = true);
+    els.hintBtn.disabled = true;
     const isCorrect = btn.dataset.correct === "true";
 
     if(isCorrect){
@@ -176,6 +191,7 @@
     state.queue = buildQueue();
     state.index = 0;
     state.score = 0;
+    state.hintUsed = false;
     state.startTime = Date.now();
     startTimer();
     showScreen("play");
@@ -187,6 +203,7 @@
     const btn = e.target.closest(".quiz-option");
     if(btn) handleAnswer(btn);
   });
+  els.hintBtn.addEventListener("click", useHint);
 
   els.nextBtn.addEventListener("click", () => finish(false));
 
