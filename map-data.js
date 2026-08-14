@@ -75,12 +75,36 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Battle_of_Plassey")
   },
   {
+    place: "Wandiwash", left: 39.38, top: 76.92,
+    year: "1760", yearSort: 1760,
+    title: "The Battle of Wandiwash",
+    text: "A British force under Eyre Coote crushes the French army in the Carnatic, deciding the long Anglo-French contest for control of India in Britain's favour once and for all.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Bataille_de_Vandavachy_-_gagn%C3%A9e_par_les_Anglais_sur_les_Fran%C3%A7ais_le_22_janvier_1760_-_communiqu%C3%A9_par_d%27Estaing_-_btv1b532541002.jpg/330px-Bataille_de_Vandavachy_-_gagn%C3%A9e_par_les_Anglais_sur_les_Fran%C3%A7ais_le_22_janvier_1760_-_communiqu%C3%A9_par_d%27Estaing_-_btv1b532541002.jpg",
+    link: MAP_WIKI("Battle_of_Wandiwash")
+  },
+  {
+    place: "Pondicherry", left: 40.09, top: 78.65,
+    year: "1761", yearSort: 1761,
+    title: "The Fall of Pondicherry",
+    text: "After Wandiwash, the British besiege and capture Pondicherry, the capital of France's Indian territories — French ambitions of an Indian empire never recover.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Ruines_de_Pondichery_en_1762.jpg/330px-Ruines_de_Pondichery_en_1762.jpg",
+    link: MAP_WIKI("Siege_of_Pondicherry_(1760)")
+  },
+  {
     place: "Buxar", left: 53.06, top: 36.71,
     year: "1764", yearSort: 1764,
     title: "The Battle of Buxar",
     text: "A combined army of the Mughal emperor, the Nawab of Awadh, and the Nawab of Bengal is crushed by the East India Company — the victory that wins the Company the Diwani, the right to collect revenue across Bengal, Bihar, and Odisha.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sir_Hector_Munro_by_David_Martin_%28cropped%29.jpg/330px-Sir_Hector_Munro_by_David_Martin_%28cropped%29.jpg",
     link: MAP_WIKI("Battle_of_Buxar")
+  },
+  {
+    place: "Bombay", left: 17.3, top: 57.9,
+    year: "1767", yearSort: 1767,
+    title: "The First Anglo-Mysore War",
+    text: "Haidar Ali of Mysore marches to the very gates of Madras and dictates peace terms to a startled East India Company — the first of four wars between Mysore and the British that would span three decades.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Anglo-Mysore_War_1_and_2.png/330px-Anglo-Mysore_War_1_and_2.png",
+    link: MAP_WIKI("First_Anglo-Mysore_War")
   },
   {
     place: "Calcutta", left: 67.05, top: 44.6,
@@ -91,12 +115,52 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Regulating_Act_of_1773")
   },
   {
+    place: "Poona", left: 17.9, top: 47.8,
+    year: "1775", yearSort: 1775,
+    title: "The First Anglo-Maratha War Begins",
+    text: "The Company backs a rival claimant to the Peshwa's throne, dragging it into war with the powerful Maratha Confederacy — the first serious military test of Company power against a major Indian state.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Maratha_British_Treaty.JPG/330px-Maratha_British_Treaty.JPG",
+    link: MAP_WIKI("First_Anglo-Maratha_War")
+  },
+  {
+    place: "Wadgaon", left: 21.09, top: 58.31,
+    year: "1779", yearSort: 1779,
+    title: "The Battle of Wadgaon",
+    text: "A Company army marching on Pune is surrounded and forced into a humiliating surrender by Maratha forces — one of the few outright British defeats of the entire colonial period.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Maratha_British_Treaty.JPG/330px-Maratha_British_Treaty.JPG",
+    link: MAP_WIKI("Battle_of_Wadgaon")
+  },
+  {
+    place: "Mangalore", left: 24.56, top: 75.78,
+    year: "1783", yearSort: 1783,
+    title: "The Siege of Mangalore",
+    text: "Tipu Sultan besieges the British garrison at Mangalore for nine months during the Second Anglo-Mysore War, forcing its surrender — one of Mysore's most stubborn stands against Company expansion.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/TipuSultan1790.jpg/330px-TipuSultan1790.jpg",
+    link: MAP_WIKI("Siege_of_Mangalore")
+  },
+  {
     place: "Calcutta", left: 66.85, top: 44.9,
     year: "1784", yearSort: 1784,
     title: "Pitt's India Act",
     text: "Parliament places the East India Company's Indian territories under a government-appointed Board of Control, splitting power between the Company and the Crown for the first time.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Coat_of_arms_of_Great_Britain_%281714%E2%80%931801%29.svg/330px-Coat_of_arms_of_Great_Britain_%281714%E2%80%931801%29.svg.png",
     link: MAP_WIKI("Pitt%27s_India_Act")
+  },
+  {
+    place: "Bangalore", left: 33.09, top: 75.48,
+    year: "1791", yearSort: 1791,
+    title: "The Siege of Bangalore",
+    text: "Company forces under Lord Cornwallis storm Bangalore's fort during the Third Anglo-Mysore War, opening the road to Tipu Sultan's capital at Seringapatam.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/The_Death_of_Colonel_Moorehouse_at_the_Storming_of_the_Pettah_Gate_of_Bangalore_7_March_1791.jpg/330px-The_Death_of_Colonel_Moorehouse_at_the_Storming_of_the_Pettah_Gate_of_Bangalore_7_March_1791.jpg",
+    link: MAP_WIKI("Siege_of_Bangalore")
+  },
+  {
+    place: "Srirangapatna", left: 30.6, top: 76.8,
+    year: "1792", yearSort: 1792,
+    title: "Tipu Sultan Cedes Half His Kingdom",
+    text: "Besieged at his own capital, Tipu Sultan surrenders half of Mysore's territory and two of his young sons as hostages to end the Third Anglo-Mysore War — a humiliation he would spend the next seven years trying to reverse.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/The_definitive_treaty_by_the_hostage_princes_into_the_hands_of_Lord_Cornwallis_%28cropped%29.jpg/330px-The_definitive_treaty_by_the_hostage_princes_into_the_hands_of_Lord_Cornwallis_%28cropped%29.jpg",
+    link: MAP_WIKI("Siege_of_Seringapatam_(1792)")
   },
   {
     place: "Srirangapatna", left: 30.28, top: 77.17,
@@ -123,12 +187,36 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Second_Anglo-Maratha_War")
   },
   {
+    place: "Bharatpur", left: 32.78, top: 31.63,
+    year: "1805", yearSort: 1805,
+    title: "The Siege of Bharatpur",
+    text: "A British siege of the fortress-state of Bharatpur ends in failure after repeated assaults are repelled — a rare setback that leaves Bharatpur independent for another four decades.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Colonel_Maitland_at_Bhurtpore.jpg/330px-Colonel_Maitland_at_Bhurtpore.jpg",
+    link: MAP_WIKI("Siege_of_Bharatpur_(1805)")
+  },
+  {
     place: "Vellore", left: 37.91, top: 75.63,
     year: "1806", yearSort: 1806,
     title: "The Vellore Mutiny",
     text: "Sepoys at Vellore Fort rise up against new East India Company dress regulations seen as an assault on their faith — the first large-scale armed mutiny against Company rule, half a century before 1857.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/%E0%A7%A7%E0%A7%AE%E0%A7%A6%E0%A7%AC_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%AD%E0%A7%87%E0%A6%B2%E0%A7%8B%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%AE%E0%A7%8D%E0%A6%AD.jpg/330px-%E0%A7%A7%E0%A7%AE%E0%A7%A6%E0%A7%AC_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%AD%E0%A7%87%E0%A6%B2%E0%A7%8B%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%AE%E0%A7%8D%E0%A6%AD.jpg",
     link: MAP_WIKI("Vellore_mutiny")
+  },
+  {
+    place: "Nalapani", left: 34.47, top: 22.09,
+    year: "1814", yearSort: 1814,
+    title: "The Battle of Nalapani",
+    text: "A tiny Gurkha garrison under Balbhadra Kunwar holds a hilltop fort against a far larger British force for over a month in the opening battle of the Anglo-Nepalese War, impressing the British enough that they begin recruiting Gurkhas into their own army.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Death_of_Rollo_Gillespie_%28Cassell%27s_illustrated_history_of_India%29.png/330px-Death_of_Rollo_Gillespie_%28Cassell%27s_illustrated_history_of_India%29.png",
+    link: MAP_WIKI("Battle_of_Nalapani")
+  },
+  {
+    place: "Koregaon", left: 22.03, top: 58.65,
+    year: "1818", yearSort: 1818,
+    title: "The Battle of Koregaon",
+    text: "A small Company force, including soldiers from the Mahar caste long excluded from Peshwa armies, holds off a much larger Peshwa force at Koregaon — the battle that ends Maratha power, and one still commemorated every January by Dalit communities as a symbol of resistance to caste oppression.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bhima_Koregaon_Victory_Pillar.jpg/330px-Bhima_Koregaon_Victory_Pillar.jpg",
+    link: MAP_WIKI("Battle_of_Koregaon")
   },
   {
     place: "Barrackpore", left: 67.1, top: 44.95,
@@ -153,6 +241,30 @@ const MAP_EVENTS = [
     text: "Thomas Macaulay's Minute on Education redirects Indian schooling toward English-language, Western-style instruction, aiming to create 'a class of persons, Indian in blood and colour, but English in taste' — a policy whose effects still echo in Indian education.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Thomas_Babington_Macaulay2.jpg/330px-Thomas_Babington_Macaulay2.jpg",
     link: MAP_WIKI("English_Education_Act_1835")
+  },
+  {
+    place: "Ferozeshah", left: 24.22, top: 20.46,
+    year: "1845", yearSort: 1845,
+    title: "The Battle of Ferozeshah",
+    text: "One of the bloodiest battles of the First Anglo-Sikh War, fought over two days near Ferozepur — the British win, but at such heavy cost that the outcome is in doubt until the very end.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Battle_of_ferozeshah%28H_Martens%29.jpg/330px-Battle_of_ferozeshah%28H_Martens%29.jpg",
+    link: MAP_WIKI("Battle_of_Ferozeshah")
+  },
+  {
+    place: "Sobraon", left: 25.56, top: 19.38,
+    year: "1846", yearSort: 1846,
+    title: "The Battle of Sobraon",
+    text: "The decisive final battle of the First Anglo-Sikh War: British forces storm the Sikh Army's fortified camp on the Sutlej, ending the war and forcing the Sikh Empire to cede Kashmir and the Jalandhar Doab.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/The_Battle_of_Sobraon_10_February_1846.jpg/330px-The_Battle_of_Sobraon_10_February_1846.jpg",
+    link: MAP_WIKI("Battle_of_Sobraon")
+  },
+  {
+    place: "Multan", left: 13.97, top: 22.46,
+    year: "1848", yearSort: 1848,
+    title: "The Siege of Multan",
+    text: "A local governor's revolt against the Sikh regency escalates into a months-long siege that reignites war between the British and the Sikh Empire — the spark for the Second Anglo-Sikh War. Multan lies in present-day Pakistan.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Shrine_Shah_Rukn-e-Alam.jpg/330px-Shrine_Shah_Rukn-e-Alam.jpg",
+    link: MAP_WIKI("Siege_of_Multan")
   },
   {
     place: "Lahore", left: 21.9, top: 17.7,
@@ -259,6 +371,38 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Indian_Councils_Act_1861")
   },
   {
+    place: "Calcutta", left: 67.55, top: 45.1,
+    year: "1863", yearSort: 1863,
+    title: "Swami Vivekananda is Born",
+    text: "Swami Vivekananda, the monk who would introduce Vedanta philosophy to the West and become one of modern India's most influential spiritual reformers, is born in Calcutta.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Swami_Vivekananda-1893-09-signed.jpg/330px-Swami_Vivekananda-1893-09-signed.jpg",
+    link: MAP_WIKI("Swami_Vivekananda")
+  },
+  {
+    place: "Porbandar", left: 15.06, top: 52.35,
+    year: "1869", yearSort: 1869,
+    title: "Gandhi is Born",
+    text: "Mohandas Karamchand Gandhi is born in the small coastal town of Porbandar, Gujarat — the man who would lead India to independence through non-violent resistance.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/330px-Mahatma-Gandhi%2C_studio%2C_1931.jpg",
+    link: MAP_WIKI("Mahatma_Gandhi")
+  },
+  {
+    place: "Calcutta", left: 66.1, top: 44.55,
+    year: "1872", yearSort: 1872,
+    title: "Sri Aurobindo is Born",
+    text: "Sri Aurobindo, the revolutionary turned philosopher who would later found an ashram at Pondicherry, is born in Calcutta.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Sri_aurobindo.jpg/330px-Sri_aurobindo.jpg",
+    link: MAP_WIKI("Sri_Aurobindo")
+  },
+  {
+    place: "Nadiad", left: 18.31, top: 45.57,
+    year: "1875", yearSort: 1875,
+    title: "Vallabhbhai Patel is Born",
+    text: "Vallabhbhai Patel — the future 'Sardar' of Bardoli and the Iron Man who would unify over 500 princely states into one India — is born in Nadiad, Gujarat.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Sardar_patel_%28cropped%29.jpg/330px-Sardar_patel_%28cropped%29.jpg",
+    link: MAP_WIKI("Vallabhbhai_Patel")
+  },
+  {
     place: "Poona", left: 16.7, top: 48.2,
     year: "1876", yearSort: 1876,
     title: "The Poona Sarvajanik Sabha",
@@ -275,12 +419,36 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Vernacular_Press_Act,_1878")
   },
   {
+    place: "Thorapalli", left: 33.84, top: 77.38,
+    year: "1878", yearSort: 1878,
+    title: "Rajagopalachari is Born",
+    text: "C. Rajagopalachari — future leader of the Vedaranyam salt march and independent India's last Governor-General — is born near Hosur in present-day Tamil Nadu.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Chakravarthi_Rajagopalachari.jpg",
+    link: MAP_WIKI("C._Rajagopalachari")
+  },
+  {
+    place: "Hyderabad", left: 36.5, top: 61.3,
+    year: "1879", yearSort: 1879,
+    title: "Sarojini Naidu is Born",
+    text: "Sarojini Naidu, the poet and orator who would lead the Dharasana salt raid and become the first Indian woman to preside over the Indian National Congress, is born in Hyderabad.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Sarojini_Naidu_in_1928.jpg/330px-Sarojini_Naidu_in_1928.jpg",
+    link: MAP_WIKI("Sarojini_Naidu")
+  },
+  {
     place: "Calcutta", left: 67.3, top: 46.05,
     year: "1883", yearSort: 1883,
     title: "The Ilbert Bill Controversy",
     text: "A modest proposal to let senior Indian judges try European defendants triggers a furious backlash from British residents — the racial double standard it exposes helps convince Indian leaders that only organised political pressure, not British goodwill, would win them equality.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Support_for_the_Ilbert_Bill.jpg/330px-Support_for_the_Ilbert_Bill.jpg",
     link: MAP_WIKI("Ilbert_Bill")
+  },
+  {
+    place: "Zeradei", left: 54.22, top: 34.92,
+    year: "1884", yearSort: 1884,
+    title: "Rajendra Prasad is Born",
+    text: "Rajendra Prasad, the Champaran Satyagraha organiser who would become independent India's first President, is born in the village of Zeradei, Bihar.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Rajendra_Prasad_%28Indian_President%29%2C_signed_image_for_Walter_Nash_%28NZ_Prime_Minister%29%2C_1958_%2816017609534%29.jpg/330px-Rajendra_Prasad_%28Indian_President%29%2C_signed_image_for_Walter_Nash_%28NZ_Prime_Minister%29%2C_1958_%2816017609534%29.jpg",
+    link: MAP_WIKI("Rajendra_Prasad")
   },
   {
     place: "Bombay", left: 18.22, top: 56.98,
@@ -291,6 +459,30 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Indian_National_Congress")
   },
   {
+    place: "Allahabad", left: 45.9, top: 36.3,
+    year: "1889", yearSort: 1889,
+    title: "Nehru is Born",
+    text: "Jawaharlal Nehru, who would become Gandhi's chosen successor and independent India's first Prime Minister, is born in Allahabad to a prosperous barrister's family.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/97/Nehru_in_the_Netherlands%2C_1957.jpg",
+    link: MAP_WIKI("Jawaharlal_Nehru")
+  },
+  {
+    place: "Imphal", left: 84.6, top: 39.4,
+    year: "1891", yearSort: 1891,
+    title: "The Anglo-Manipur War",
+    text: "Manipur's brief but fierce resistance to British political control ends in defeat and annexation, its leaders executed — one of the last small kingdoms to fall to the Company's successor, the Crown.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Kangla3.jpg/330px-Kangla3.jpg",
+    link: MAP_WIKI("Anglo-Manipur_War")
+  },
+  {
+    place: "Mhow", left: 27.41, top: 45.85,
+    year: "1891", yearSort: 1891,
+    title: "Ambedkar is Born",
+    text: "Bhimrao Ramji Ambedkar, who would rise from a Dalit childhood of exclusion to draft the Constitution of India, is born in the military cantonment town of Mhow, Madhya Pradesh.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Dr._Bhimrao_Ambedkar.jpg/330px-Dr._Bhimrao_Ambedkar.jpg",
+    link: MAP_WIKI("B._R._Ambedkar")
+  },
+  {
     place: "Poona", left: 17.5, top: 48.95,
     year: "1897", yearSort: 1897,
     title: "The Chapekar Brothers' Assassination",
@@ -299,12 +491,28 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Chapekar_brothers")
   },
   {
+    place: "Cuttack", left: 58.69, top: 52.4,
+    year: "1897", yearSort: 1897,
+    title: "Subhas Chandra Bose is Born",
+    text: "Subhas Chandra Bose, the revolutionary who would later lead the Indian National Army against the Raj, is born in Cuttack, Odisha.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Subhas_Chandra_Bose_NRB.jpg/330px-Subhas_Chandra_Bose_NRB.jpg",
+    link: MAP_WIKI("Subhas_Chandra_Bose")
+  },
+  {
     place: "Calcutta", left: 66.75, top: 45.94,
     year: "1905", yearSort: 1905,
     title: "The Partition of Bengal",
     text: "Lord Curzon partitions Bengal along religious lines, hoping to weaken nationalist sentiment — it instead ignites the Swadeshi movement and mass boycotts of British goods.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Babu_Bipin_Chandra_Pal_from_Andhrapatrika_samvatsaradi_sanchika_1911_%28page_199_crop%29.jpg/330px-Babu_Bipin_Chandra_Pal_from_Andhrapatrika_samvatsaradi_sanchika_1911_%28page_199_crop%29.jpg",
     link: MAP_WIKI("Partition_of_Bengal_(1905)")
+  },
+  {
+    place: "Calcutta", left: 67.65, top: 46.9,
+    year: "1906", yearSort: 1906,
+    title: "The Swadeshi Movement Spreads",
+    text: "In the years after the Partition of Bengal, the Swadeshi movement's boycott of British goods and promotion of Indian-made products spreads from Bengal into a nationwide economic weapon against colonial rule.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Concentrate_on_Charkha_and_Swadeshi_bazaar_art.jpg/330px-Concentrate_on_Charkha_and_Swadeshi_bazaar_art.jpg",
+    link: MAP_WIKI("Swadeshi_movement")
   },
   {
     place: "Surat", left: 18.55, top: 49.95,
@@ -651,12 +859,28 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Congress_Socialist_Party")
   },
   {
+    place: "Delhi", left: 30.4, top: 27.6,
+    year: "1935", yearSort: 1935,
+    title: "The Government of India Act 1935",
+    text: "A sweeping new constitution grants Indian provinces self-government for the first time and lays the federal framework that independent India's own Constitution would later build on.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Coat_of_arms_of_the_United_Kingdom_%281901%E2%80%931952%29.svg/330px-Coat_of_arms_of_the_United_Kingdom_%281901%E2%80%931952%29.svg.png",
+    link: MAP_WIKI("Government_of_India_Act_1935")
+  },
+  {
     place: "Faizpur", left: 27.59, top: 50.19,
     year: "1936", yearSort: 1936,
     title: "Congress Meets in a Village",
     text: "For the first time, the Indian National Congress holds its annual session not in a city but in the small village of Faizpur, deliberately bringing the party's politics to rural India's farmers.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/D_N_College_Faizpur_21.jpg/330px-D_N_College_Faizpur_21.jpg",
     link: MAP_WIKI("Faizpur")
+  },
+  {
+    place: "Delhi", left: 31.4, top: 26.9,
+    year: "1937", yearSort: 1937,
+    title: "The 1937 Provincial Elections",
+    text: "The Indian National Congress wins power in most provinces in India's first elections under the new constitution, forming ministries and governing large parts of the country for the first time — a dress rehearsal for national government a decade later.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Jawaharlal_Nehru_stamp_%28cropped%29.jpg/330px-Jawaharlal_Nehru_stamp_%28cropped%29.jpg",
+    link: MAP_WIKI("1937_Indian_provincial_elections")
   },
   {
     place: "Haripura", left: 18.6, top: 50.75,
