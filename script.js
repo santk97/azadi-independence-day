@@ -752,8 +752,8 @@ updateSpine();
   const mount = document.getElementById("ytPlayerMount");
   if(!mount) return;
 
-  // "independence" playlist (PLSkEjGYspQWw) — 44 songs
-  const PLAYLIST = ["wDheWYmNEhQ","l71aOtTJ1gE","wF_B_aagLfI","BKx_B1VZ2kw","nDsIy6kRhms","g62J-8nV5FI","Q3JMD4oaXlI","iii1NM-Zv1g","2n3iW1V-wIE","x5fYTPvrz4g","YHmYop9Bc_Q","TdmUuRELfWI","jDn2bn7_YSM","s_-tthrE0Hg","phXc6nu1vG0","c769V25pX08","4tiVPuLbbHg","yRmnGwqyEJY","-Dm-iScM23Y","GJEjUd0AjM4","OSEw6kv70Xw","1JRIhF3kh_8","c6PHJg9D_Sk","BeqcIyuNVZI","ddrx8288qwA","n6yTCblgAQQ","PIKLTEtntI8","yy8J1Z65Rzs","-0kPkqkrHPk","lWsGPxp4s1w","e1aI46jBNmA","LLw0-5lmxR4","ummGYA6gWME","MXg6Usdjl5c","X-DDknSzELI","9iIX4PBplAY","jKzCPLu98O4","Q0ySWaet1_U","cVQmLKVvd0M","JK-0qmxim80","CBtiEZNQimI","sSsw7QPrUk0","FGjQIHVUECk","diT_XLLJiF8"];
+  // "independence" playlist (PLSkEjGYspQWw) — 51 songs
+  const PLAYLIST = ["wDheWYmNEhQ","l71aOtTJ1gE","wF_B_aagLfI","BKx_B1VZ2kw","nDsIy6kRhms","g62J-8nV5FI","Q3JMD4oaXlI","iii1NM-Zv1g","2n3iW1V-wIE","x5fYTPvrz4g","YHmYop9Bc_Q","TdmUuRELfWI","jDn2bn7_YSM","s_-tthrE0Hg","phXc6nu1vG0","c769V25pX08","4tiVPuLbbHg","yRmnGwqyEJY","-Dm-iScM23Y","GJEjUd0AjM4","OSEw6kv70Xw","1JRIhF3kh_8","c6PHJg9D_Sk","BeqcIyuNVZI","ddrx8288qwA","n6yTCblgAQQ","PIKLTEtntI8","yy8J1Z65Rzs","-0kPkqkrHPk","lWsGPxp4s1w","e1aI46jBNmA","LLw0-5lmxR4","ummGYA6gWME","MXg6Usdjl5c","X-DDknSzELI","9iIX4PBplAY","jKzCPLu98O4","Q0ySWaet1_U","cVQmLKVvd0M","JK-0qmxim80","CBtiEZNQimI","sSsw7QPrUk0","FGjQIHVUECk","diT_XLLJiF8","L1yeukkQTOg","nCFvhMS5EIU","OsUGcxppXmw","mOEL8Q-2bSo","gg1tN-gkcwk","WVMSjMtPbq0","pM2K5UNN6CE"];
 
   function shuffle(arr){
     const a = arr.slice();
