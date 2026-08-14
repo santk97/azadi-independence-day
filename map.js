@@ -1,6 +1,7 @@
 /* ============================================================
-   आज़ादी Map — interactive pins over a verified outline map,
-   with a year timeline that reveals events chronologically.
+   आज़ादी Map — interactive pins over a verified outline map.
+   A year timeline shows only the events from the selected year;
+   the map itself supports mouse-wheel zoom and drag-to-pan.
    Runs as a full-screen overlay so the persistent music player
    keeps playing underneath.
    ============================================================ */
@@ -15,6 +16,18 @@
     yearReadout: document.getElementById("mapYearReadout"),
     ticks: document.getElementById("mapTimelineTicks"),
     playBtn: document.getElementById("mapPlayBtn"),
+    showAllBtn: document.getElementById("mapShowAllBtn"),
+    imageWrap: document.getElementById("mapImageWrap"),
+    zoomLayer: document.getElementById("mapZoomLayer"),
+    zoomIn: document.getElementById("mapZoomIn"),
+    zoomOut: document.getElementById("mapZoomOut"),
+    zoomReset: document.getElementById("mapZoomReset"),
+    card: document.getElementById("mapPinCard"),
+    cardImg: document.getElementById("mapCardImg"),
+    cardEyebrow: document.getElementById("mapCardEyebrow"),
+    cardTitle: document.getElementById("mapCardTitle"),
+    cardText: document.getElementById("mapCardText"),
+    cardLink: document.getElementById("mapCardLink"),
   };
   const iconPlay = els.playBtn.querySelector(".icon-play");
   const iconPause = els.playBtn.querySelector(".icon-pause");
@@ -25,90 +38,191 @@
   const uniqueYears = [...new Set(years)].sort((a, b) => a - b);
 
   let lastFocused = null;
-  let activePin = null;
+  let mode = "all"; // "all" | "year"
   let playing = false;
   let playTimer = null;
+  let playIdx = 0;
+  let cardOwner = null; // the .map-pin-dot currently showing the card
+
+  /* ---------------- Pins ---------------- */
 
   function renderPins(){
-    els.pins.innerHTML = MAP_EVENTS.map((ev, i) => {
-      const modifiers = [
-        ev.top < 22 ? "flip-down" : "",
-        ev.left < 12 ? "align-left" : (ev.left > 88 ? "align-right" : ""),
-      ].filter(Boolean).join(" ");
-      return `
-      <div class="map-pin ${modifiers}" style="left:${ev.left}%; top:${ev.top}%;" data-index="${i}" data-year="${ev.yearSort}">
+    els.pins.innerHTML = MAP_EVENTS.map((ev, i) => `
+      <div class="map-pin" style="left:${ev.left}%; top:${ev.top}%;" data-index="${i}" data-year="${ev.yearSort}">
         <button class="map-pin-dot" aria-label="${ev.place}, ${ev.year}: ${ev.title}" type="button"></button>
-        <div class="map-pin-card">
-          <img class="map-pin-card-img" src="${ev.image}" alt="" loading="lazy">
-          <div class="map-pin-card-body">
-            <span class="map-pin-card-eyebrow">${ev.place} &middot; ${ev.year}</span>
-            <h4 class="map-pin-card-title">${ev.title}</h4>
-            <p class="map-pin-card-text">${ev.text}</p>
-            <a class="map-pin-card-link" href="${ev.link}" target="_blank" rel="noopener noreferrer">Read more &rarr;</a>
-          </div>
-        </div>
-      </div>`;
-    }).join("");
+      </div>`).join("");
   }
 
   function renderTicks(){
     els.ticks.innerHTML = uniqueYears.map(y => {
       const pct = (y - minYear) / (maxYear - minYear) * 100;
-      return `<button class="map-tick" style="left:${pct}%" data-year="${y}" aria-label="Jump to ${y}" type="button"></button>`;
+      return `<button class="map-tick" style="left:${pct}%" data-year="${y}" aria-label="Show ${y}" type="button"></button>`;
     }).join("");
   }
 
-  function applyYear(year){
-    els.yearReadout.textContent = year;
-    els.slider.setAttribute("aria-valuetext", `${year}`);
-    els.pins.querySelectorAll(".map-pin").forEach(pin => {
-      pin.classList.toggle("unreached", Number(pin.dataset.year) > year);
-    });
+  /* ---------------- Year filtering ---------------- */
+
+  function showAll(){
+    mode = "all";
+    els.yearReadout.textContent = "All";
+    els.pins.querySelectorAll(".map-pin").forEach(pin => pin.classList.remove("map-pin-hidden"));
+    els.ticks.querySelectorAll(".map-tick").forEach(t => t.classList.remove("active"));
   }
 
-  function setActivePin(pin){
-    if(activePin){
-      activePin.classList.remove("active");
-      const wasSame = activePin === pin;
-      activePin = null;
-      if(wasSame) return;
-    }
-    if(pin){
-      pin.classList.add("active");
-      activePin = pin;
-    }
+  function showYear(year){
+    mode = "year";
+    els.yearReadout.textContent = year;
+    els.slider.value = year;
+    els.slider.setAttribute("aria-valuetext", `${year}`);
+    els.pins.querySelectorAll(".map-pin").forEach(pin => {
+      pin.classList.toggle("map-pin-hidden", Number(pin.dataset.year) !== year);
+    });
+    els.ticks.querySelectorAll(".map-tick").forEach(t => {
+      t.classList.toggle("active", Number(t.dataset.year) === year);
+    });
+    if(cardOwner && Number(cardOwner.closest(".map-pin").dataset.year) !== year) hideCard();
   }
+
+  /* ---------------- Play through years ---------------- */
 
   function stopPlay(){
     playing = false;
     if(playTimer){ clearInterval(playTimer); playTimer = null; }
     iconPlay.hidden = false;
     iconPause.hidden = true;
-    els.playBtn.setAttribute("aria-label", "Play timeline");
+    els.playBtn.setAttribute("aria-label", "Play through the years");
   }
 
   function startPlay(){
     playing = true;
     iconPlay.hidden = true;
     iconPause.hidden = false;
-    els.playBtn.setAttribute("aria-label", "Pause timeline");
-    let y = Number(els.slider.value);
-    if(y >= maxYear) y = minYear;
-    applyYear(y);
-    els.slider.value = y;
+    els.playBtn.setAttribute("aria-label", "Pause");
+    playIdx = mode === "year" ? uniqueYears.indexOf(Number(els.slider.value)) : -1;
+    if(playIdx < 0) playIdx = -1;
+    showYear(uniqueYears[(playIdx + 1) % uniqueYears.length]);
+    playIdx = (playIdx + 1) % uniqueYears.length;
     playTimer = setInterval(() => {
-      y += 3;
-      if(y >= maxYear){
-        y = maxYear;
-        els.slider.value = y;
-        applyYear(y);
-        stopPlay();
-        return;
-      }
-      els.slider.value = y;
-      applyYear(y);
-    }, 70);
+      playIdx = (playIdx + 1) % uniqueYears.length;
+      showYear(uniqueYears[playIdx]);
+    }, 1100);
   }
+
+  /* ---------------- Shared hover/tap card ---------------- */
+
+  function positionCard(dot){
+    const rect = dot.getBoundingClientRect();
+    const cardW = 236, cardH = els.card.offsetHeight || 260, margin = 10;
+    let left = rect.left + rect.width / 2 - cardW / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - cardW - margin));
+
+    const spaceAbove = rect.top;
+    const flipDown = spaceAbove < cardH + margin + 20;
+    let top = flipDown ? rect.bottom + 12 : rect.top - cardH - 12;
+    top = Math.max(margin, Math.min(top, window.innerHeight - cardH - margin));
+
+    els.card.style.left = `${left}px`;
+    els.card.style.top = `${top}px`;
+  }
+
+  function showCard(dot){
+    const pin = dot.closest(".map-pin");
+    const ev = MAP_EVENTS[Number(pin.dataset.index)];
+    els.cardImg.src = ev.image;
+    els.cardImg.alt = ev.title;
+    els.cardEyebrow.textContent = `${ev.place} · ${ev.year}`;
+    els.cardTitle.textContent = ev.title;
+    els.cardText.textContent = ev.text;
+    els.cardLink.href = ev.link;
+    els.card.classList.add("open");
+    cardOwner = dot;
+    positionCard(dot);
+  }
+
+  function hideCard(){
+    els.card.classList.remove("open");
+    cardOwner = null;
+  }
+
+  /* ---------------- Zoom & pan ---------------- */
+
+  const zoom = { scale: 1, x: 0, y: 0, min: 1, max: 4 };
+  let dragging = false, dragStartX = 0, dragStartY = 0, dragOriginX = 0, dragOriginY = 0;
+  let zoomingTimer = null;
+
+  function clampPan(){
+    const wrapRect = els.imageWrap.getBoundingClientRect();
+    const maxX = (wrapRect.width * (zoom.scale - 1)) / 2;
+    const maxY = (wrapRect.height * (zoom.scale - 1)) / 2;
+    zoom.x = Math.max(-maxX, Math.min(maxX, zoom.x));
+    zoom.y = Math.max(-maxY, Math.min(maxY, zoom.y));
+  }
+
+  function applyZoom(){
+    clampPan();
+    els.zoomLayer.style.transform = `translate(${zoom.x}px, ${zoom.y}px) scale(${zoom.scale})`;
+    els.imageWrap.classList.toggle("zoomed", zoom.scale > 1.01);
+    // Suppress the pin transform transition while actively zooming/panning
+    // so dot size tracks the wheel/drag 1:1 instead of lagging behind it;
+    // the transition still applies for the year-filter show/hide fade.
+    els.pins.classList.add("map-pins--zooming");
+    clearTimeout(zoomingTimer);
+    zoomingTimer = setTimeout(() => els.pins.classList.remove("map-pins--zooming"), 220);
+    els.pins.style.setProperty("--pin-counter-scale", 1 / zoom.scale);
+    if(cardOwner) positionCard(cardOwner);
+  }
+
+  function zoomBy(factor, cx, cy){
+    const wrapRect = els.imageWrap.getBoundingClientRect();
+    const originX = cx !== undefined ? cx - wrapRect.left - wrapRect.width / 2 : 0;
+    const originY = cy !== undefined ? cy - wrapRect.top - wrapRect.height / 2 : 0;
+    const newScale = Math.max(zoom.min, Math.min(zoom.max, zoom.scale * factor));
+    const actualFactor = newScale / zoom.scale;
+    zoom.x = (zoom.x - originX) * actualFactor + originX;
+    zoom.y = (zoom.y - originY) * actualFactor + originY;
+    zoom.scale = newScale;
+    applyZoom();
+  }
+
+  function resetZoom(){
+    zoom.scale = 1; zoom.x = 0; zoom.y = 0;
+    applyZoom();
+  }
+
+  els.imageWrap.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+    zoomBy(factor, e.clientX, e.clientY);
+  }, { passive: false });
+
+  els.imageWrap.addEventListener("mousedown", (e) => {
+    if(zoom.scale <= 1.01) return;
+    if(e.target.closest(".map-pin-dot")) return;
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    dragOriginX = zoom.x; dragOriginY = zoom.y;
+    els.imageWrap.classList.add("dragging");
+  });
+  window.addEventListener("mousemove", (e) => {
+    if(!dragging) return;
+    zoom.x = dragOriginX + (e.clientX - dragStartX);
+    zoom.y = dragOriginY + (e.clientY - dragStartY);
+    applyZoom();
+  });
+  window.addEventListener("mouseup", () => {
+    dragging = false;
+    els.imageWrap.classList.remove("dragging");
+  });
+
+  els.zoomIn.addEventListener("click", () => zoomBy(1.4));
+  els.zoomOut.addEventListener("click", () => zoomBy(1 / 1.4));
+  els.zoomReset.addEventListener("click", resetZoom);
+  els.imageWrap.addEventListener("dblclick", (e) => {
+    if(zoom.scale > 1.01) resetZoom();
+    else zoomBy(2, e.clientX, e.clientY);
+  });
+
+  /* ---------------- Open / close ---------------- */
 
   function open(){
     lastFocused = document.activeElement;
@@ -116,8 +230,9 @@
     page.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
     stopPlay();
-    els.slider.value = maxYear;
-    applyYear(maxYear);
+    resetZoom();
+    showAll();
+    hideCard();
   }
 
   function close(){
@@ -125,37 +240,51 @@
     page.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
     stopPlay();
-    setActivePin(null);
+    hideCard();
     if(lastFocused) lastFocused.focus();
   }
 
   renderPins();
   renderTicks();
 
+  els.pins.addEventListener("mouseover", (e) => {
+    const dot = e.target.closest(".map-pin-dot");
+    if(dot) showCard(dot);
+  });
+  els.pins.addEventListener("mouseout", (e) => {
+    const dot = e.target.closest(".map-pin-dot");
+    if(dot && (!e.relatedTarget || !els.card.contains(e.relatedTarget))) hideCard();
+  });
+  els.pins.addEventListener("focusin", (e) => {
+    const dot = e.target.closest(".map-pin-dot");
+    if(dot) showCard(dot);
+  });
+  els.pins.addEventListener("focusout", (e) => {
+    if(!els.pins.contains(e.relatedTarget) && !els.card.contains(e.relatedTarget)) hideCard();
+  });
   els.pins.addEventListener("click", (e) => {
     const dot = e.target.closest(".map-pin-dot");
     if(!dot) return;
-    setActivePin(dot.closest(".map-pin"));
+    if(cardOwner === dot) hideCard(); else showCard(dot);
   });
-
   document.addEventListener("click", (e) => {
-    if(activePin && !activePin.contains(e.target)) setActivePin(null);
+    if(cardOwner && !e.target.closest(".map-pin") && !els.card.contains(e.target)) hideCard();
   });
 
   els.slider.addEventListener("input", () => {
     if(playing) stopPlay();
-    applyYear(Number(els.slider.value));
+    showYear(Number(els.slider.value));
   });
-
   els.ticks.addEventListener("click", (e) => {
     const tick = e.target.closest(".map-tick");
     if(!tick) return;
     if(playing) stopPlay();
-    const y = Number(tick.dataset.year);
-    els.slider.value = y;
-    applyYear(y);
+    showYear(Number(tick.dataset.year));
   });
-
+  els.showAllBtn.addEventListener("click", () => {
+    if(playing) stopPlay();
+    showAll();
+  });
   els.playBtn.addEventListener("click", () => {
     if(playing) stopPlay(); else startPlay();
   });
@@ -163,7 +292,8 @@
   els.close.addEventListener("click", close);
   page.querySelector(".app-page-backdrop").addEventListener("click", close);
   document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape" && page.classList.contains("open")) close();
+    if(!page.classList.contains("open")) return;
+    if(e.key === "Escape") close();
   });
 
   document.getElementById("navOpenMap")?.addEventListener("click", open);

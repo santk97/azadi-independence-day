@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>आज़ादी — The Road to Freedom</title>
 <meta name="description" content="A verified walkthrough of India's freedom struggle — timeline, freedom fighters, archival footage, and the songs that carried a nation's hope.">
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
 
@@ -408,26 +408,45 @@
     <div class="map-head">
       <span class="eyebrow">Explore geographically &amp; chronologically</span>
       <h2>The Struggle, Place by Place</h2>
-      <p>29 verified events, 1608&ndash;1947. Hover a pin to read what happened there, or drag the timeline to watch the map fill in year by year.</p>
+      <p>40 verified events, 1608&ndash;1947. Hover a pin to read what happened there. Drag the timeline to a year to see only what happened then, or scroll to zoom the map.</p>
     </div>
     <div class="map-timeline">
       <div class="map-timeline-top">
-        <button class="map-timeline-play" id="mapPlayBtn" aria-label="Play timeline" type="button">
+        <button class="map-timeline-play" id="mapPlayBtn" aria-label="Play through the years" type="button">
           <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 4l14 8-14 8V4z" fill="currentColor"/></svg>
           <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" hidden><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg>
         </button>
-        <div class="map-timeline-year" id="mapYearReadout" aria-live="polite">1947</div>
+        <div class="map-timeline-year" id="mapYearReadout" aria-live="polite">All</div>
         <span class="map-timeline-range">1608&ndash;1947</span>
+        <button class="map-timeline-showall" id="mapShowAllBtn" type="button">Show all</button>
       </div>
       <div class="map-timeline-track-wrap">
-        <input type="range" class="map-timeline-slider" id="mapYearSlider" min="1608" max="1947" value="1947" step="1" aria-label="Filter map events up to a year">
+        <input type="range" class="map-timeline-slider" id="mapYearSlider" min="1608" max="1947" value="1947" step="1" aria-label="Show events from a specific year">
         <div class="map-timeline-ticks" id="mapTimelineTicks"><!-- populated by map.js --></div>
       </div>
     </div>
     <div class="map-stage">
-      <div class="map-image-wrap">
-        <img src="assets/map/india_outline.svg?v=3" alt="Outline map of India" id="mapImage">
-        <div class="map-pins" id="mapPins"><!-- populated by map.js --></div>
+      <div class="map-zoom-controls">
+        <button class="map-zoom-btn" id="mapZoomIn" aria-label="Zoom in" type="button">+</button>
+        <button class="map-zoom-btn" id="mapZoomOut" aria-label="Zoom out" type="button">&minus;</button>
+        <button class="map-zoom-btn map-zoom-reset" id="mapZoomReset" aria-label="Reset zoom" type="button">
+          <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6M4 10a8 8 0 0 1 14-5M20 14a8 8 0 0 1-14 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="map-image-wrap" id="mapImageWrap">
+        <div class="map-zoom-layer" id="mapZoomLayer">
+          <img src="assets/map/india_outline.svg?v=3" alt="Outline map of India" id="mapImage">
+          <div class="map-pins" id="mapPins"><!-- populated by map.js --></div>
+        </div>
+      </div>
+    </div>
+    <div class="map-pin-card" id="mapPinCard">
+      <img class="map-pin-card-img" id="mapCardImg" src="" alt="">
+      <div class="map-pin-card-body">
+        <span class="map-pin-card-eyebrow" id="mapCardEyebrow"></span>
+        <h4 class="map-pin-card-title" id="mapCardTitle"></h4>
+        <p class="map-pin-card-text" id="mapCardText"></p>
+        <a class="map-pin-card-link" id="mapCardLink" target="_blank" rel="noopener noreferrer">Read more &rarr;</a>
       </div>
     </div>
   </div>
@@ -453,8 +472,8 @@
 
 <script src="quiz-data.js?v=1"></script>
 <script src="quiz.js?v=1"></script>
-<script src="map-data.js?v=2"></script>
-<script src="map.js?v=3"></script>
+<script src="map-data.js?v=3"></script>
+<script src="map.js?v=5"></script>
 <script src="script.js?v=13"></script>
 </body>
 </html>

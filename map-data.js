@@ -27,6 +27,14 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Battle_of_Plassey")
   },
   {
+    place: "Vellore", left: 37.91, top: 75.63,
+    year: "1806", yearSort: 1806,
+    title: "The Vellore Mutiny",
+    text: "Sepoys at Vellore Fort rise up against new East India Company dress regulations seen as an assault on their faith — the first large-scale armed mutiny against Company rule, half a century before 1857.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/%E0%A7%A7%E0%A7%AE%E0%A7%A6%E0%A7%AC_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%AD%E0%A7%87%E0%A6%B2%E0%A7%8B%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%AE%E0%A7%8D%E0%A6%AD.jpg/330px-%E0%A7%A7%E0%A7%AE%E0%A7%A6%E0%A7%AC_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%AD%E0%A7%87%E0%A6%B2%E0%A7%8B%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%AE%E0%A7%8D%E0%A6%AD.jpg",
+    link: MAP_WIKI("Vellore_mutiny")
+  },
+  {
     place: "Meerut", left: 33.47, top: 26.22,
     year: "1857", yearSort: 1857,
     title: "The Sepoy Mutiny Begins",
@@ -49,6 +57,22 @@ const MAP_EVENTS = [
     text: "Rani Lakshmibai refuses to surrender her state to the British and leads her own troops into the 1857 uprising, becoming its most fearless symbol.",
     image: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Rani_of_jhansi.jpg",
     link: MAP_WIKI("Rani_of_Jhansi")
+  },
+  {
+    place: "Kanpur", left: 41.66, top: 34.0,
+    year: "1857", yearSort: 1857,
+    title: "The Siege of Cawnpore",
+    text: "Besieged Company forces and civilians are promised safe passage out of Cawnpore, then attacked as they board boats to leave — one of the bloodiest episodes of the 1857 uprising.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Massacre_in_the_boats_off_Cawnpore_-_The_history_of_the_Indian_Mutiny_%281858-1859%29%2C_opposite_336_-_BL.jpg/330px-Massacre_in_the_boats_off_Cawnpore_-_The_history_of_the_Indian_Mutiny_%281858-1859%29%2C_opposite_336_-_BL.jpg",
+    link: MAP_WIKI("Siege_of_Cawnpore")
+  },
+  {
+    place: "Lucknow", left: 43.59, top: 32.77,
+    year: "1857", yearSort: 1857,
+    title: "The Siege of Lucknow",
+    text: "Rebel sepoys lay siege to the British Residency at Lucknow for nearly five months — one of the longest and most fiercely fought sieges of the 1857 uprising.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/7th_Hussars%2C_charging_a_body_of_the_Mutineer%27s_Cavalry.jpg/330px-7th_Hussars%2C_charging_a_body_of_the_Mutineer%27s_Cavalry.jpg",
+    link: MAP_WIKI("Siege_of_Lucknow")
   },
   {
     place: "Bombay", left: 18.22, top: 56.98,
@@ -94,7 +118,7 @@ const MAP_EVENTS = [
     place: "Kheda", left: 17.75, top: 45.38,
     year: "1918", yearSort: 1918,
     title: "The Kheda Satyagraha",
-    text: "Gandhi and a young Vallabhbhai Patel organise Kheda's farmers to withhold taxes after crop failures, winning a suspension of revenue collection and Patel his 'Sardar' reputation.",
+    text: "Gandhi and a young Vallabhbhai Patel organise Kheda's farmers to withhold taxes after a failed harvest, winning a suspension of revenue collection in one of Patel's first major campaigns alongside Gandhi.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Gandhi_Kheda_1918.jpg/330px-Gandhi_Kheda_1918.jpg",
     link: MAP_WIKI("Kheda_Satyagraha")
   },
@@ -123,12 +147,36 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Chauri_Chaura_incident")
   },
   {
+    place: "Vaikom", left: 29.38, top: 85.38,
+    year: "1924", yearSort: 1924,
+    title: "The Vaikom Satyagraha",
+    text: "Volunteers of every caste court arrest for walking the public road outside the Vaikom temple — a 20-month non-violent campaign against untouchability that draws Gandhi's direct support.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/EVR_Statue%2C_Vaikom.JPG/330px-EVR_Statue%2C_Vaikom.JPG",
+    link: MAP_WIKI("Vaikom_Satyagraha")
+  },
+  {
     place: "Kakori", left: 42.83, top: 32.7,
     year: "1925", yearSort: 1925,
     title: "The Kakori Conspiracy",
     text: "Revolutionaries led by Ram Prasad Bismil rob a train carrying government treasury funds near Kakori — a daring act that leads to Bismil's and Ashfaqulla Khan's execution the following year.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Ram_parsad_bismal.tif/lossy-page1-330px-Ram_parsad_bismal.tif.jpg",
     link: MAP_WIKI("Kakori_conspiracy")
+  },
+  {
+    place: "Lahore", left: 22.6, top: 18.05,
+    year: "1928", yearSort: 1928,
+    title: "Lala Lajpat Rai's Fatal Injuries",
+    text: "Lala Lajpat Rai leads a protest against the all-British Simon Commission and is beaten by police; he dies of his injuries weeks later, a death that hardens a generation of revolutionaries. Lahore lies in present-day Pakistan.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Mahatma_Lala_Lajpat_Rai.jpg/330px-Mahatma_Lala_Lajpat_Rai.jpg",
+    link: MAP_WIKI("Lala_Lajpat_Rai")
+  },
+  {
+    place: "Bardoli", left: 19.13, top: 50.4,
+    year: "1928", yearSort: 1928,
+    title: "The Bardoli Satyagraha",
+    text: "Vallabhbhai Patel leads Bardoli's farmers in refusing to pay a steep tax hike; the government backs down, and the women of Bardoli give Patel the title 'Sardar' — chief — that stays with him for life.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Gandhi_and_Sadar_Patel_Bardoli_Satyagraha.jpg/330px-Gandhi_and_Sadar_Patel_Bardoli_Satyagraha.jpg",
+    link: MAP_WIKI("Bardoli_Satyagraha")
   },
   {
     place: "Lahore", left: 22.94, top: 18.31,
@@ -171,6 +219,22 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Qissa_Khwani_massacre")
   },
   {
+    place: "Chittagong", left: 77.59, top: 46.65,
+    year: "1930", yearSort: 1930,
+    title: "The Chittagong Armoury Raid",
+    text: "Surya Sen leads dozens of young revolutionaries in a coordinated raid on two British armouries, briefly declaring a provisional independent government before the group scatters into the hills. Chittagong lies in present-day Bangladesh.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Chittagong_Armoury%2C_Bengal_Presidency.jpg/330px-Chittagong_Armoury%2C_Bengal_Presidency.jpg",
+    link: MAP_WIKI("Chittagong_armoury_raid")
+  },
+  {
+    place: "Vedaranyam", left: 40.16, top: 83.45,
+    year: "1930", yearSort: 1930,
+    title: "Rajaji's Salt March",
+    text: "C. Rajagopalachari leads a parallel salt march from Trichinopoly to Vedaranyam on the Tamil coast, breaking the salt law in the south just as Gandhi does at Dandi in the west.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Chakravarthi_Rajagopalachari.jpg",
+    link: MAP_WIKI("C._Rajagopalachari")
+  },
+  {
     place: "Allahabad", left: 46.41, top: 37.08,
     year: "1931", yearSort: 1931,
     title: "Chandrashekhar Azad's Last Stand",
@@ -203,12 +267,36 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Quit_India_Movement")
   },
   {
+    place: "Delhi", left: 32.05, top: 26.7,
+    year: "1942", yearSort: 1942,
+    title: "The Cripps Mission Fails",
+    text: "Sir Stafford Cripps offers India dominion status after the war in exchange for wartime cooperation; Congress rejects it as a 'post-dated cheque on a crashing bank,' and Gandhi launches Quit India months later.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Stafford_Cripps_1947.jpg/330px-Stafford_Cripps_1947.jpg",
+    link: MAP_WIKI("Cripps_Mission")
+  },
+  {
+    place: "Calcutta", left: 66.4, top: 46.1,
+    year: "1943", yearSort: 1943,
+    title: "The Bengal Famine",
+    text: "Wartime policy failures and a cyclone-hit harvest combine to kill an estimated two to three million people in Bengal — a catastrophe that fuels the case that British rule could no longer be trusted with Indian lives.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dead_or_dying_children_on_a_Calcutta_street_%28the_Statesman_22_August_1943%29.jpg/330px-Dead_or_dying_children_on_a_Calcutta_street_%28the_Statesman_22_August_1943%29.jpg",
+    link: MAP_WIKI("Bengal_famine_of_1943")
+  },
+  {
     place: "Delhi", left: 32.3, top: 27.7,
     year: "1945", yearSort: 1945,
     title: "The Red Fort Trials",
     text: "Captured Indian National Army officers are tried for treason at the Red Fort — the trials backfire on the British, uniting Indian public opinion behind the defendants.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/INA_trial_IN_Red_Fort.jpg/330px-INA_trial_IN_Red_Fort.jpg",
     link: MAP_WIKI("Indian_National_Army_trials")
+  },
+  {
+    place: "Simla", left: 31.78, top: 19.69,
+    year: "1945", yearSort: 1945,
+    title: "The Simla Conference",
+    text: "Viceroy Lord Wavell gathers India's political leaders at the Viceregal Lodge to negotiate self-government — the talks collapse over how power would be shared between Congress and the Muslim League.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Simla_conference.JPG/330px-Simla_conference.JPG",
+    link: MAP_WIKI("Simla_Conference")
   },
   {
     place: "Bombay", left: 17.85, top: 56.55,
