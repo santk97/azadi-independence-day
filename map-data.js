@@ -4,7 +4,7 @@
    W67.0 E99.0). Position is computed from real coordinates:
      left% = (lon - 67)   / 32   * 100
      top%  = (37.5 - lat) / 32.5 * 100
-   Sorted chronologically; yearSort drives the year scrubber.
+   Sorted chronologically; yearSort drives the year timeline.
    ============================================================ */
 
 const MAP_WIKI = (title) => `https://en.wikipedia.org/wiki/${title}`;
@@ -19,6 +19,54 @@ const MAP_EVENTS = [
     link: MAP_WIKI("William_Hawkins_(fl._c._1600)")
   },
   {
+    place: "Bombay", left: 18.05, top: 57.75,
+    year: "1661", yearSort: 1661,
+    title: "Bombay Ceded to England",
+    text: "Bombay passes to the English Crown as part of Catherine of Braganza's dowry when she marries Charles II — the harbour that would later become the Company's, and then British India's, commercial capital.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Bombay_Castle%2C_1666.jpg/330px-Bombay_Castle%2C_1666.jpg",
+    link: MAP_WIKI("History_of_Bombay_under_Portuguese_rule_(1534%E2%80%931661)")
+  },
+  {
+    place: "Purandar", left: 21.84, top: 59.11,
+    year: "1665", yearSort: 1665,
+    title: "The Treaty of Purandar",
+    text: "Chhatrapati Shivaji, besieged by a Mughal army, surrenders most of his forts to keep his kingdom alive — a tactical retreat he would spend the next decade reversing.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Shivaji_British_Museum.jpg/330px-Shivaji_British_Museum.jpg",
+    link: MAP_WIKI("Treaty_of_Purandar")
+  },
+  {
+    place: "Agra", left: 34.44, top: 31.75,
+    year: "1666", yearSort: 1666,
+    title: "Shivaji's Escape from Agra",
+    text: "Held under house arrest at Aurangzeb's court, Shivaji smuggles himself out of Agra hidden in a basket of sweets — a daring escape that let him rebuild the Maratha resistance to Mughal rule.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Shivaji_British_Museum.jpg/330px-Shivaji_British_Museum.jpg",
+    link: MAP_WIKI("Shivaji")
+  },
+  {
+    place: "Raigad", left: 20.13, top: 59.29,
+    year: "1674", yearSort: 1674,
+    title: "Shivaji Crowned Chhatrapati",
+    text: "Shivaji is crowned Chhatrapati at Raigad Fort, formally founding the Maratha Empire — the first major Indian power to directly challenge both Mughal authority and European trading companies.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Shivaji_British_Museum.jpg/330px-Shivaji_British_Museum.jpg",
+    link: MAP_WIKI("Shivaji")
+  },
+  {
+    place: "Bombay", left: 18.4, top: 56.2,
+    year: "1686", yearSort: 1686,
+    title: "The Company's First War with the Mughals",
+    text: "Company forces attack Mughal ports around Bombay and Hooghly in a bid to win trading concessions by force — Aurangzeb's navy crushes them, and the humbled Company spends the next two decades begging its way back into Mughal favour.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/f/fb/The_English_ask_pardon_of_Aurangzeb.jpg",
+    link: MAP_WIKI("Anglo-Mughal_War_(1686%E2%80%931690)")
+  },
+  {
+    place: "Calcutta", left: 66.55, top: 44.3,
+    year: "1690", yearSort: 1690,
+    title: "Job Charnock Settles Calcutta",
+    text: "East India Company agent Job Charnock establishes a trading post on the Hooghly river at three villages that would grow into Calcutta — for over two centuries the capital of British India.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Job_Charnock.jpg/330px-Job_Charnock.jpg",
+    link: MAP_WIKI("Job_Charnock")
+  },
+  {
     place: "Plassey", left: 66.44, top: 42.22,
     year: "1757", yearSort: 1757,
     title: "The Battle of Plassey",
@@ -27,12 +75,92 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Battle_of_Plassey")
   },
   {
+    place: "Buxar", left: 53.06, top: 36.71,
+    year: "1764", yearSort: 1764,
+    title: "The Battle of Buxar",
+    text: "A combined army of the Mughal emperor, the Nawab of Awadh, and the Nawab of Bengal is crushed by the East India Company — the victory that wins the Company the Diwani, the right to collect revenue across Bengal, Bihar, and Odisha.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sir_Hector_Munro_by_David_Martin_%28cropped%29.jpg/330px-Sir_Hector_Munro_by_David_Martin_%28cropped%29.jpg",
+    link: MAP_WIKI("Battle_of_Buxar")
+  },
+  {
+    place: "Calcutta", left: 67.05, top: 44.6,
+    year: "1773", yearSort: 1773,
+    title: "The Regulating Act",
+    text: "Parliament passes the Regulating Act, bringing the East India Company's Bengal government under state oversight for the first time and creating the post of Governor-General — the first step toward Crown rule.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Warren_Hastings_by_Sir_Joshua_Reynolds.jpg/330px-Warren_Hastings_by_Sir_Joshua_Reynolds.jpg",
+    link: MAP_WIKI("Regulating_Act_of_1773")
+  },
+  {
+    place: "Calcutta", left: 66.85, top: 44.9,
+    year: "1784", yearSort: 1784,
+    title: "Pitt's India Act",
+    text: "Parliament places the East India Company's Indian territories under a government-appointed Board of Control, splitting power between the Company and the Crown for the first time.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Coat_of_arms_of_Great_Britain_%281714%E2%80%931801%29.svg/330px-Coat_of_arms_of_Great_Britain_%281714%E2%80%931801%29.svg.png",
+    link: MAP_WIKI("Pitt%27s_India_Act")
+  },
+  {
+    place: "Srirangapatna", left: 30.28, top: 77.17,
+    year: "1799", yearSort: 1799,
+    title: "Tipu Sultan's Last Stand",
+    text: "Tipu Sultan, the 'Tiger of Mysore', dies defending his capital against a Company siege — the fall of the last major Indian power capable of matching British arms in the south.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Tipu_death.jpg/330px-Tipu_death.jpg",
+    link: MAP_WIKI("Siege_of_Seringapatam_(1799)")
+  },
+  {
+    place: "Assaye", left: 27.59, top: 53.08,
+    year: "1803", yearSort: 1803,
+    title: "The Battle of Assaye",
+    text: "A young Arthur Wellesley — later the Duke of Wellington — defeats a far larger Maratha army at Assaye, breaking Maratha power in the Deccan during the Second Anglo-Maratha War.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Battle_of_Assaye.jpeg/330px-Battle_of_Assaye.jpeg",
+    link: MAP_WIKI("Battle_of_Assaye")
+  },
+  {
+    place: "Delhi", left: 31.2, top: 26.5,
+    year: "1803", yearSort: 1803,
+    title: "Delhi Falls to the Company",
+    text: "Company forces take Delhi from the Marathas; the Mughal emperor Shah Alam II passes under British protection, reduced from ruler to pensioner in his own capital.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Shahalam2.png/330px-Shahalam2.png",
+    link: MAP_WIKI("Second_Anglo-Maratha_War")
+  },
+  {
     place: "Vellore", left: 37.91, top: 75.63,
     year: "1806", yearSort: 1806,
     title: "The Vellore Mutiny",
     text: "Sepoys at Vellore Fort rise up against new East India Company dress regulations seen as an assault on their faith — the first large-scale armed mutiny against Company rule, half a century before 1857.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/%E0%A7%A7%E0%A7%AE%E0%A7%A6%E0%A7%AC_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%AD%E0%A7%87%E0%A6%B2%E0%A7%8B%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%AE%E0%A7%8D%E0%A6%AD.jpg/330px-%E0%A7%A7%E0%A7%AE%E0%A7%A6%E0%A7%AC_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%AD%E0%A7%87%E0%A6%B2%E0%A7%8B%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%AE%E0%A7%8D%E0%A6%AD.jpg",
     link: MAP_WIKI("Vellore_mutiny")
+  },
+  {
+    place: "Barrackpore", left: 67.1, top: 44.95,
+    year: "1824", yearSort: 1824,
+    title: "The Barrackpore Mutiny",
+    text: "Sepoys refuse orders to march to Burma by sea, fearing the loss of caste — the protest is crushed by artillery fire, a grim rehearsal for the far larger uprising that would follow three decades later.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Chaterbengal.jpg/330px-Chaterbengal.jpg",
+    link: MAP_WIKI("Barrackpore_mutiny_of_1824")
+  },
+  {
+    place: "Calcutta", left: 67.0, top: 45.6,
+    year: "1829", yearSort: 1829,
+    title: "Sati is Abolished",
+    text: "Governor-General Bentinck outlaws the practice of sati, acting on decades of campaigning by reformer Raja Ram Mohan Roy — one of the first major social reforms of the colonial era.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Portrait_of_Raja_Ram_Mohun_Roy%2C_1833.jpg/330px-Portrait_of_Raja_Ram_Mohun_Roy%2C_1833.jpg",
+    link: MAP_WIKI("Bengal_Sati_Regulation,_1829")
+  },
+  {
+    place: "Calcutta", left: 66.55, top: 46.55,
+    year: "1835", yearSort: 1835,
+    title: "Macaulay's Minute on Education",
+    text: "Thomas Macaulay's Minute on Education redirects Indian schooling toward English-language, Western-style instruction, aiming to create 'a class of persons, Indian in blood and colour, but English in taste' — a policy whose effects still echo in Indian education.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Thomas_Babington_Macaulay2.jpg/330px-Thomas_Babington_Macaulay2.jpg",
+    link: MAP_WIKI("English_Education_Act_1835")
+  },
+  {
+    place: "Lahore", left: 21.9, top: 17.7,
+    year: "1849", yearSort: 1849,
+    title: "The Annexation of Punjab",
+    text: "Defeat in the Second Anglo-Sikh War ends the Sikh Empire; the Company annexes Punjab outright, completing its conquest of the subcontinent's last major independent power.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/The_Battle_of_Gujrat.jpg/330px-The_Battle_of_Gujrat.jpg",
+    link: MAP_WIKI("Second_Anglo-Sikh_War")
   },
   {
     place: "Meerut", left: 33.47, top: 26.22,
@@ -75,12 +203,100 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Siege_of_Lucknow")
   },
   {
+    place: "Delhi", left: 32.6, top: 28.1,
+    year: "1857", yearSort: 1857,
+    title: "The Siege of Delhi",
+    text: "Rebel sepoys capture Delhi and proclaim the aged Mughal emperor Bahadur Shah Zafar their leader; a Company force besieges and retakes the city after months of fighting, ending Mughal rule for good.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/1857_cashmeri_gate_delhi.jpg/330px-1857_cashmeri_gate_delhi.jpg",
+    link: MAP_WIKI("Siege_of_Delhi_(1857)")
+  },
+  {
+    place: "Delhi", left: 32.15, top: 28.5,
+    year: "1857", yearSort: 1857,
+    title: "Bahadur Shah Zafar Proclaimed Leader",
+    text: "The last Mughal emperor, a poet with no real army of his own, is proclaimed leader of the 1857 uprising by rebel sepoys — a symbolic figurehead whose later trial and exile to Rangoon closed the Mughal dynasty forever.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Bahadur_Shah_II_of_India.jpg/330px-Bahadur_Shah_II_of_India.jpg",
+    link: MAP_WIKI("Bahadur_Shah_Zafar")
+  },
+  {
+    place: "Kanpur", left: 42.1, top: 34.4,
+    year: "1857", yearSort: 1857,
+    title: "Nana Sahib Leads the Revolt",
+    text: "Denied the pension he believed was his due, Nana Sahib leads the rebel forces at Cawnpore before vanishing after the city's recapture — his fate never conclusively established.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Nana_sahib.png/330px-Nana_sahib.png",
+    link: MAP_WIKI("Nana_Sahib")
+  },
+  {
+    place: "Lucknow", left: 44.0, top: 33.2,
+    year: "1857", yearSort: 1857,
+    title: "Begum Hazrat Mahal's Regency",
+    text: "With her husband the king exiled, Begum Hazrat Mahal declares her young son ruler of Awadh and leads the rebel administration from Lucknow, refusing British offers of amnesty to the end.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/6/64/Begum_hazrat_mahal.jpg",
+    link: MAP_WIKI("Hazrat_Mahal")
+  },
+  {
+    place: "Gwalior", left: 34.94, top: 34.71,
+    year: "1858", yearSort: 1858,
+    title: "The Rani of Jhansi's Death",
+    text: "Rani Lakshmibai dies at Gwalior leading a cavalry charge against Company forces, sword in hand — she is buried where she fell, and remembered as the rebellion's most fearless commander.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Rani_of_jhansi.jpg",
+    link: MAP_WIKI("Rani_of_Jhansi")
+  },
+  {
+    place: "Allahabad", left: 46.8, top: 36.7,
+    year: "1858", yearSort: 1858,
+    title: "The Crown Takes Over",
+    text: "The Government of India Act 1858 abolishes East India Company rule and transfers its territories directly to the British Crown, read out at a durbar in Allahabad — the Company that had ruled since Plassey is dissolved.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Queen_Victoria_by_Bassano.jpg/330px-Queen_Victoria_by_Bassano.jpg",
+    link: MAP_WIKI("Government_of_India_Act_1858")
+  },
+  {
+    place: "Calcutta", left: 66.6, top: 46.75,
+    year: "1861", yearSort: 1861,
+    title: "The Indian Councils Act",
+    text: "The Indian Councils Act of 1861 lets a handful of Indians sit on the Viceroy's legislative council for the first time — a token gesture toward representation that nationalists would spend the next sixty years demanding more of.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Coat_of_arms_of_the_United_Kingdom_%281837%29.svg/330px-Coat_of_arms_of_the_United_Kingdom_%281837%29.svg.png",
+    link: MAP_WIKI("Indian_Councils_Act_1861")
+  },
+  {
+    place: "Poona", left: 16.7, top: 48.2,
+    year: "1876", yearSort: 1876,
+    title: "The Poona Sarvajanik Sabha",
+    text: "Reformers found the Poona Sarvajanik Sabha to petition the government on behalf of ordinary Indians — one of the earliest organised political associations, and a direct forerunner of the Indian National Congress.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Poona_Sarvajanik_Sabha_monthly_journal.jpg/330px-Poona_Sarvajanik_Sabha_monthly_journal.jpg",
+    link: MAP_WIKI("Poona_Sarvajanik_Sabha")
+  },
+  {
+    place: "Calcutta", left: 66.9, top: 45.7,
+    year: "1878", yearSort: 1878,
+    title: "The Vernacular Press Act",
+    text: "Viceroy Lytton's Vernacular Press Act lets the government gag any Indian-language newspaper it judges seditious — a censorship law that only sharpens nationalist resolve.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Coronet_of_a_British_Earl.svg/330px-Coronet_of_a_British_Earl.svg.png",
+    link: MAP_WIKI("Vernacular_Press_Act,_1878")
+  },
+  {
+    place: "Calcutta", left: 67.3, top: 46.05,
+    year: "1883", yearSort: 1883,
+    title: "The Ilbert Bill Controversy",
+    text: "A modest proposal to let senior Indian judges try European defendants triggers a furious backlash from British residents — the racial double standard it exposes helps convince Indian leaders that only organised political pressure, not British goodwill, would win them equality.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Support_for_the_Ilbert_Bill.jpg/330px-Support_for_the_Ilbert_Bill.jpg",
+    link: MAP_WIKI("Ilbert_Bill")
+  },
+  {
     place: "Bombay", left: 18.22, top: 56.98,
     year: "1885", yearSort: 1885,
     title: "The Indian National Congress Founded",
     text: "Allan Octavian Hume convenes the first session of the Indian National Congress in Bombay, founding the organisation that would lead the independence movement for the next six decades.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/A_O_Hume.jpg/330px-A_O_Hume.jpg",
     link: MAP_WIKI("Indian_National_Congress")
+  },
+  {
+    place: "Poona", left: 17.5, top: 48.95,
+    year: "1897", yearSort: 1897,
+    title: "The Chapekar Brothers' Assassination",
+    text: "The Chapekar brothers shoot dead the British plague commissioner they blame for brutal, humiliating house-to-house searches during a Poona epidemic — one of the first political assassinations of the nationalist era.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Revolutionary%2C_Damodar_Hari_Chapekar.jpg/330px-Revolutionary%2C_Damodar_Hari_Chapekar.jpg",
+    link: MAP_WIKI("Chapekar_brothers")
   },
   {
     place: "Calcutta", left: 66.75, top: 45.94,
@@ -91,6 +307,14 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Partition_of_Bengal_(1905)")
   },
   {
+    place: "Surat", left: 18.55, top: 49.95,
+    year: "1907", yearSort: 1907,
+    title: "The Surat Split",
+    text: "The Indian National Congress splits at its Surat session between Tilak's 'Extremists', who want direct mass action, and the older 'Moderates', who favour petitions and reform — the party would not fully reunite for a decade.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Bal_Gangadhar_Tilak_%281856-1920%29.webp",
+    link: MAP_WIKI("Surat_Split")
+  },
+  {
     place: "Muzaffarpur", left: 57.47, top: 35.02,
     year: "1908", yearSort: 1908,
     title: "Khudiram Bose's Bombing Attempt",
@@ -99,12 +323,76 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Khudiram_Bose")
   },
   {
+    place: "Calcutta", left: 66.2, top: 45.75,
+    year: "1908", yearSort: 1908,
+    title: "The Alipore Bomb Case",
+    text: "Police raid a revolutionary cell in Calcutta and put Sri Aurobindo and dozens of others on trial for conspiracy; acquitted after a year in jail, Aurobindo withdraws from politics into spiritual life, while the case makes revolutionary terrorism a national talking point.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Sri_aurobindo.jpg/330px-Sri_aurobindo.jpg",
+    link: MAP_WIKI("Emperor_v._Aurobindo_Ghosh_and_Others")
+  },
+  {
+    place: "Poona", left: 16.85, top: 49.1,
+    year: "1908", yearSort: 1908,
+    title: "Tilak's Sedition Trial",
+    text: "Bal Gangadhar Tilak is tried for sedition over articles defending revolutionary violence and sentenced to six years in a Burmese prison — his defiant 'Swaraj is my birthright' speech at the trial becomes a rallying cry.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Bal_Gangadhar_Tilak_%281856-1920%29.webp",
+    link: MAP_WIKI("Bal_Gangadhar_Tilak")
+  },
+  {
+    place: "Nashik", left: 21.22, top: 53.86,
+    year: "1909", yearSort: 1909,
+    title: "The Assassination of Collector Jackson",
+    text: "Young revolutionary Anant Laxman Kanhere shoots dead Nashik's district collector at a theatre — Kanhere is hanged at 19, one of the youngest revolutionaries executed by the British.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Revolutionary%2C_Anant_Lakshman_Kanhere.jpg/330px-Revolutionary%2C_Anant_Lakshman_Kanhere.jpg",
+    link: MAP_WIKI("Anant_Laxman_Kanhere")
+  },
+  {
     place: "Port Blair", left: 80.41, top: 79.63,
     year: "1911", yearSort: 1911,
     title: "Transported to the Cellular Jail",
     text: "Vinayak Damodar Savarkar is transported to the Cellular Jail on the Andaman Islands to serve two life sentences, joining hundreds of revolutionaries held in solitary confinement for their part in the freedom struggle.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Front_View_of_Cellular_Jail%2C_Port_Blair.JPG/330px-Front_View_of_Cellular_Jail%2C_Port_Blair.JPG",
     link: MAP_WIKI("Cellular_Jail")
+  },
+  {
+    place: "Delhi", left: 30.9, top: 27.9,
+    year: "1911", yearSort: 1911,
+    title: "The Delhi Durbar",
+    text: "King George V is presented to a vast assembly of Indian princes and announces that the capital of British India will move from Calcutta to Delhi — the pageant marks the high tide of the Raj's pomp, even as the ground shifts beneath it.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Delhi_Durbar%2C_1911.jpg/330px-Delhi_Durbar%2C_1911.jpg",
+    link: MAP_WIKI("Delhi_Durbar")
+  },
+  {
+    place: "Delhi", left: 32.7, top: 26.4,
+    year: "1912", yearSort: 1912,
+    title: "The Attempt on Viceroy Hardinge",
+    text: "A revolutionary hurls a bomb at Viceroy Hardinge as he makes his ceremonial entry into the new capital, wounding him — a shocking reminder that Delhi's grand durbars had not bought the Raj any real peace.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/b/bb/An_assassination_attempt_on_Lord_Charles_Hardinge.jpg",
+    link: MAP_WIKI("Delhi_conspiracy_case")
+  },
+  {
+    place: "Lahore", left: 23.6, top: 17.9,
+    year: "1915", yearSort: 1915,
+    title: "The Ghadar Mutiny",
+    text: "Indian revolutionaries returning from North America to spark an armed mutiny within the Indian Army are betrayed by an informer; the plot collapses and dozens are hanged, but the Ghadar Party's example inspires a generation of revolutionaries.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Lala_Har_Dayal_1987_stamp_of_India.jpg",
+    link: MAP_WIKI("Ghadar_Mutiny")
+  },
+  {
+    place: "Lucknow", left: 43.2, top: 32.3,
+    year: "1916", yearSort: 1916,
+    title: "The Lucknow Pact",
+    text: "The Indian National Congress and the Muslim League, led by a young Muhammad Ali Jinnah, agree on a joint demand for self-government — the last time the two organisations would present a fully united front.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Jinnah1945c.jpg/330px-Jinnah1945c.jpg",
+    link: MAP_WIKI("Lucknow_Pact")
+  },
+  {
+    place: "Madras", left: 41.47, top: 75.14,
+    year: "1916", yearSort: 1916,
+    title: "The Home Rule Movement",
+    text: "Annie Besant and Bal Gangadhar Tilak launch parallel Home Rule Leagues demanding self-government within the British Empire, building the first genuinely mass nationalist organisation India had seen.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bal_Gangadhar_Tilak_in_Madras_1917.jpg/330px-Bal_Gangadhar_Tilak_in_Madras_1917.jpg",
+    link: MAP_WIKI("Indian_Home_Rule_movement")
   },
   {
     place: "Champaran", left: 56.0, top: 33.38,
@@ -131,6 +419,14 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Jallianwala_Bagh_massacre")
   },
   {
+    place: "Delhi", left: 30.7, top: 26.2,
+    year: "1919", yearSort: 1919,
+    title: "The Rowlatt Act",
+    text: "The Rowlatt Act lets the government imprison suspected revolutionaries without trial, extending wartime emergency powers into peacetime — Gandhi calls a nationwide hartal in protest, his first countrywide campaign.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Star_of_the_Order_of_the_Star_of_India_%28gold%29.svg/330px-Star_of_the_Order_of_the_Star_of_India_%28gold%29.svg.png",
+    link: MAP_WIKI("Anarchical_and_Revolutionary_Crimes_Act,_1919")
+  },
+  {
     place: "Nagpur", left: 37.78, top: 50.31,
     year: "1920", yearSort: 1920,
     title: "Non-Cooperation Adopted",
@@ -139,12 +435,60 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Non-cooperation_movement_(1919%E2%80%931922)")
   },
   {
+    place: "Calcutta", left: 67.4, top: 45.5,
+    year: "1920", yearSort: 1920,
+    title: "Non-Cooperation is Launched",
+    text: "At a special Congress session in Calcutta, chaired by Lala Lajpat Rai, Gandhi's Non-Cooperation programme is adopted for the first time, months before the Nagpur session makes it official party policy nationwide.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/India%2C_by_British_Information_Services%2C_1944_restored_version.jpg/330px-India%2C_by_British_Information_Services%2C_1944_restored_version.jpg",
+    link: MAP_WIKI("Non-cooperation_movement_(1919%E2%80%931922)")
+  },
+  {
+    place: "Ahmedabad", left: 18.05, top: 44.05,
+    year: "1921", yearSort: 1921,
+    title: "The Bonfire of Foreign Cloth",
+    text: "Gandhi presides over huge public bonfires of imported cloth, urging Indians to spin and wear homespun khadi instead — the Swadeshi boycott turns economic self-reliance into a daily act of protest.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Concentrate_on_Charkha_and_Swadeshi_bazaar_art.jpg/330px-Concentrate_on_Charkha_and_Swadeshi_bazaar_art.jpg",
+    link: MAP_WIKI("Swadeshi_movement")
+  },
+  {
+    place: "Bombay", left: 17.6, top: 57.1,
+    year: "1921", yearSort: 1921,
+    title: "The Prince of Wales Riots",
+    text: "Nationalists call a hartal to boycott the Prince of Wales's royal visit to Bombay; the protest turns into days of rioting, embarrassing both the colonial government and Gandhi, who briefly fasts in response.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/HRH_The_Prince_of_Wales_No_4_%28HS85-10-36416%29.jpg/330px-HRH_The_Prince_of_Wales_No_4_%28HS85-10-36416%29.jpg",
+    link: MAP_WIKI("Prince_of_Wales_riots")
+  },
+  {
+    place: "Malabar", left: 28.44, top: 81.08,
+    year: "1921", yearSort: 1921,
+    title: "The Malabar Rebellion",
+    text: "Muslim Mappila peasants in Malabar rise up against British rule and landlord exploitation; the revolt is crushed with heavy loss of life, its legacy still debated between anti-colonial rebellion and communal violence.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/South_Malabar_1921.png/330px-South_Malabar_1921.png",
+    link: MAP_WIKI("Malabar_rebellion")
+  },
+  {
     place: "Gorakhpur", left: 51.16, top: 33.05,
     year: "1922", yearSort: 1922,
     title: "Chauri Chaura",
     text: "A protest turns violent near this town; a mob kills 22 policemen. Gandhi calls off the entire Non-Cooperation Movement in response.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Chauri_Chaura_Land_Mark.jpg/330px-Chauri_Chaura_Land_Mark.jpg",
     link: MAP_WIKI("Chauri_Chaura_incident")
+  },
+  {
+    place: "Nagpur", left: 38.2, top: 49.9,
+    year: "1923", yearSort: 1923,
+    title: "The Flag Satyagraha",
+    text: "Volunteers court arrest across Nagpur for the simple act of carrying the nationalist tricolour in public, defying a colonial ban on the flag — a campaign that establishes the tricolour as the symbol of the freedom struggle.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/1921_India_flag.svg/330px-1921_India_flag.svg.png",
+    link: MAP_WIKI("Flag_Satyagraha")
+  },
+  {
+    place: "Kakinada", left: 47.63, top: 63.11,
+    year: "1923", yearSort: 1923,
+    title: "The Congress Session at Kakinada",
+    text: "The Indian National Congress meets in Kakinada as the Swarajist wing, which favours contesting British-run councils from within, debates strategy with those who favour continued boycott — a sign of the movement's growing reach into the south.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/District_Collector_Office_building_at_Kakinada.jpg/330px-District_Collector_Office_building_at_Kakinada.jpg",
+    link: MAP_WIKI("Kakinada")
   },
   {
     place: "Vaikom", left: 29.38, top: 85.38,
@@ -179,6 +523,14 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Bardoli_Satyagraha")
   },
   {
+    place: "Bombay", left: 18.05, top: 56.3,
+    year: "1928", yearSort: 1928,
+    title: "The Simon Commission Arrives",
+    text: "A commission to review India's constitution lands at Bombay with not a single Indian member on it; Congress greets it with black-flag protests and cries of 'Simon, go back' in every city it visits.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/7/79/The_simon_commission.jpg",
+    link: MAP_WIKI("Simon_Commission")
+  },
+  {
     place: "Lahore", left: 22.94, top: 18.31,
     year: "1929", yearSort: 1929,
     title: "The Lahore Congress: Purna Swaraj",
@@ -193,6 +545,14 @@ const MAP_EVENTS = [
     text: "Bhagat Singh and Batukeshwar Dutt throw a bomb into the Central Legislative Assembly to protest repressive laws, deliberately courting arrest to put their revolutionary politics on public trial.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Comrade_Batukeshswar_Dutt.jpg/330px-Comrade_Batukeshswar_Dutt.jpg",
     link: MAP_WIKI("Bhagat_Singh")
+  },
+  {
+    place: "Meerut", left: 33.9, top: 25.8,
+    year: "1929", yearSort: 1929,
+    title: "The Meerut Conspiracy Case",
+    text: "The government puts 31 trade unionists and Communists on trial at Meerut for conspiracy against the King — the years-long trial backfires, turning its defendants into national celebrities and winning global sympathy for the labour movement.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Meerut_prisoners_outside_the_jail.jpg/330px-Meerut_prisoners_outside_the_jail.jpg",
+    link: MAP_WIKI("Meerut_Conspiracy_case")
   },
   {
     place: "Ahmedabad", left: 17.44, top: 44.52,
@@ -235,6 +595,14 @@ const MAP_EVENTS = [
     link: MAP_WIKI("C._Rajagopalachari")
   },
   {
+    place: "Dharasana", left: 18.13, top: 49.85,
+    year: "1930", yearSort: 1930,
+    title: "The Dharasana Satyagraha",
+    text: "Led by Sarojini Naidu after Gandhi's arrest, hundreds of volunteers march on the Dharasana salt works and are beaten down in ordered ranks without raising a hand in defence — American journalist Webb Miller's eyewitness report turns world opinion against British rule.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/0/03/Breaking_the_Salt_Law_by_picking_up_a_lump_of_natural_salt_at_Dandi.gif",
+    link: MAP_WIKI("Dharasana_Satyagraha")
+  },
+  {
     place: "Allahabad", left: 46.41, top: 37.08,
     year: "1931", yearSort: 1931,
     title: "Chandrashekhar Azad's Last Stand",
@@ -259,6 +627,62 @@ const MAP_EVENTS = [
     link: MAP_WIKI("Poona_Pact")
   },
   {
+    place: "Chittagong", left: 78.0, top: 47.0,
+    year: "1932", yearSort: 1932,
+    title: "Pritilata Waddedar's Raid",
+    text: "Revolutionary Pritilata Waddedar leads an armed raid on a Chittagong club that barred Indians; surrounded by police, she takes her own life rather than be captured, becoming one of the movement's most celebrated women revolutionaries.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Original_Archived_photo_of_Pritilata_Waddedar.jpg/330px-Original_Archived_photo_of_Pritilata_Waddedar.jpg",
+    link: MAP_WIKI("Pritilata_Waddedar")
+  },
+  {
+    place: "Kohima", left: 84.75, top: 36.4,
+    year: "1932", yearSort: 1932,
+    title: "Rani Gaidinliu's Uprising",
+    text: "At just 16, Rani Gaidinliu leads a Naga uprising against British rule in the northeast; captured and imprisoned for 14 years, Nehru later gives her the title 'Rani' — queen — for her defiance.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Rani_Gaidinliu_1996_stamp_of_India.jpg/330px-Rani_Gaidinliu_1996_stamp_of_India.jpg",
+    link: MAP_WIKI("Rani_Gaidinliu")
+  },
+  {
+    place: "Bombay", left: 18.75, top: 56.85,
+    year: "1934", yearSort: 1934,
+    title: "The Congress Socialist Party Founded",
+    text: "Younger Congress members impatient with Gandhian gradualism found the Congress Socialist Party, pushing the independence movement toward a more explicitly left-wing, anti-capitalist vision of a free India.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/JP%2C_Lohia_%26_Benipuri_at_Kisan_Sabha_CSP_Patna_Rally%2C_August_1936.jpg/330px-JP%2C_Lohia_%26_Benipuri_at_Kisan_Sabha_CSP_Patna_Rally%2C_August_1936.jpg",
+    link: MAP_WIKI("Congress_Socialist_Party")
+  },
+  {
+    place: "Faizpur", left: 27.59, top: 50.19,
+    year: "1936", yearSort: 1936,
+    title: "Congress Meets in a Village",
+    text: "For the first time, the Indian National Congress holds its annual session not in a city but in the small village of Faizpur, deliberately bringing the party's politics to rural India's farmers.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/D_N_College_Faizpur_21.jpg/330px-D_N_College_Faizpur_21.jpg",
+    link: MAP_WIKI("Faizpur")
+  },
+  {
+    place: "Haripura", left: 18.6, top: 50.75,
+    year: "1938", yearSort: 1938,
+    title: "Bose Elected Congress President",
+    text: "Subhas Chandra Bose is elected Congress president at its Haripura session, presiding over a grand pageant designed by artist Nandalal Bose — within a year, his push for a tougher line against Gandhi's leadership would split the party.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Subhas_Chandra_Bose_NRB.jpg/330px-Subhas_Chandra_Bose_NRB.jpg",
+    link: MAP_WIKI("Haripura")
+  },
+  {
+    place: "Lahore", left: 22.3, top: 19.0,
+    year: "1940", yearSort: 1940,
+    title: "The Lahore Resolution",
+    text: "The Muslim League adopts the Lahore Resolution calling for independent Muslim-majority states in the northwest and east of India — the formal beginning of the demand that would lead to Pakistan.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/All_India_Muslim_League_Working_Committee_Lahore_1940.jpg/330px-All_India_Muslim_League_Working_Committee_Lahore_1940.jpg",
+    link: MAP_WIKI("Lahore_Resolution")
+  },
+  {
+    place: "Calcutta", left: 66.35, top: 44.35,
+    year: "1941", yearSort: 1941,
+    title: "Bose's Escape",
+    text: "Subhas Chandra Bose slips past British surveillance disguised as a Pathan insurance agent and flees Calcutta overland to Afghanistan and on to Germany, beginning his wartime bid to raise an army against the Raj.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Subhas_Chandra_Bose_NRB.jpg/330px-Subhas_Chandra_Bose_NRB.jpg",
+    link: MAP_WIKI("Subhas_Chandra_Bose")
+  },
+  {
     place: "Bombay", left: 18.6, top: 57.4,
     year: "1942", yearSort: 1942,
     title: "Quit India Launched",
@@ -281,6 +705,38 @@ const MAP_EVENTS = [
     text: "Wartime policy failures and a cyclone-hit harvest combine to kill an estimated two to three million people in Bengal — a catastrophe that fuels the case that British rule could no longer be trusted with Indian lives.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dead_or_dying_children_on_a_Calcutta_street_%28the_Statesman_22_August_1943%29.jpg/330px-Dead_or_dying_children_on_a_Calcutta_street_%28the_Statesman_22_August_1943%29.jpg",
     link: MAP_WIKI("Bengal_famine_of_1943")
+  },
+  {
+    place: "Poona", left: 17.35, top: 48.15,
+    year: "1943", yearSort: 1943,
+    title: "Kasturba Gandhi Dies in Detention",
+    text: "Gandhi and his wife Kasturba are held at the Aga Khan Palace in Poona after his arrest for launching Quit India; Kasturba dies there in 1944 after 18 months of imprisonment, one of the movement's last personal costs before victory.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Pune_Palace.jpg/330px-Pune_Palace.jpg",
+    link: MAP_WIKI("Aga_Khan_Palace")
+  },
+  {
+    place: "Kohima", left: 85.05, top: 36.7,
+    year: "1944", yearSort: 1944,
+    title: "The Battle of Kohima",
+    text: "Japanese forces advancing toward India are stopped and thrown back at Kohima in some of the bloodiest fighting of the Second World War — a battle later voted 'Britain's Greatest Battle', fought on Indian soil.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/IND_003698_Garrison_Hill_Kohima.jpg/330px-IND_003698_Garrison_Hill_Kohima.jpg",
+    link: MAP_WIKI("Battle_of_Kohima")
+  },
+  {
+    place: "Imphal", left: 84.22, top: 38.98,
+    year: "1944", yearSort: 1944,
+    title: "The Battle of Imphal",
+    text: "Alongside Kohima, the Battle of Imphal breaks Japan's invasion of India — the joint victory is the turning point of the Burma campaign and ends any prospect of an Axis foothold on Indian soil.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Gurkhas_advancing_with_Lee_tanks_to_clear_the_Japanese_from_Imphal-Kohima_road.jpg/330px-Gurkhas_advancing_with_Lee_tanks_to_clear_the_Japanese_from_Imphal-Kohima_road.jpg",
+    link: MAP_WIKI("Battle_of_Imphal")
+  },
+  {
+    place: "Moirang", left: 83.66, top: 40.0,
+    year: "1944", yearSort: 1944,
+    title: "The INA Reaches Indian Soil",
+    text: "Subhas Chandra Bose's Indian National Army, fighting alongside Japanese forces, raises the Indian tricolour at Moirang in Manipur — briefly, this patch of Indian soil is free of British rule.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/INA_Memorial%2C_Moirang%2C_Manipur_%2812%29.jpeg/330px-INA_Memorial%2C_Moirang%2C_Manipur_%2812%29.jpeg",
+    link: MAP_WIKI("Moirang")
   },
   {
     place: "Delhi", left: 32.3, top: 27.7,
@@ -329,5 +785,53 @@ const MAP_EVENTS = [
     text: "At midnight on 15 August 1947, India's tricolour rises over the Red Fort as the country wakes to independence after nearly two centuries of British rule.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Chandni_Chowk_on_15_August_1947.jpg/330px-Chandni_Chowk_on_15_August_1947.jpg",
     link: MAP_WIKI("Indian_Independence_Day")
+  },
+  {
+    place: "Junagadh", left: 10.84, top: 49.17,
+    year: "1947", yearSort: 1947,
+    title: "The Junagadh Crisis",
+    text: "Junagadh's Muslim ruler accedes to Pakistan despite his state's Hindu majority and lack of any shared border; India intervenes, and a plebiscite overwhelmingly favours joining India instead — one of the first tests of Partition's messy borders.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/State_Flag_of_Junaghad.jpg/330px-State_Flag_of_Junaghad.jpg",
+    link: MAP_WIKI("Junagadh_State")
+  },
+  {
+    place: "Srinagar", left: 24.34, top: 10.52,
+    year: "1947", yearSort: 1947,
+    title: "Jammu and Kashmir Accedes to India",
+    text: "As raiders backed by Pakistan advance on Srinagar, Maharaja Hari Singh signs the Instrument of Accession, formally and legally joining Jammu and Kashmir to India — Indian troops are airlifted in the next morning to defend the state.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Hari_Singh_1931.jpg/330px-Hari_Singh_1931.jpg",
+    link: MAP_WIKI("Instrument_of_Accession_(Jammu_and_Kashmir)")
+  },
+  {
+    place: "Hyderabad", left: 35.91, top: 61.91,
+    year: "1948", yearSort: 1948,
+    title: "The Integration of Hyderabad",
+    text: "A year after independence, the Nizam of Hyderabad still refuses to join India; a swift Indian military action known as Operation Polo ends the standoff in days, folding the subcontinent's largest princely state into the union.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Hyderabad_state_from_the_Imperial_Gazetteer_of_India%2C_1909.jpg/330px-Hyderabad_state_from_the_Imperial_Gazetteer_of_India%2C_1909.jpg",
+    link: MAP_WIKI("Indian_annexation_of_Hyderabad")
+  },
+  {
+    place: "Delhi", left: 31.7, top: 28.3,
+    year: "1948", yearSort: 1948,
+    title: "Gandhi's Assassination",
+    text: "Mohandas Gandhi is shot dead at a prayer meeting in Delhi by Nathuram Godse, a Hindu nationalist who blamed him for conceding too much to Muslims during Partition — the nation that had just won its freedom loses the man most responsible for it.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Gandhi_Smriti_Delhi.jpg/330px-Gandhi_Smriti_Delhi.jpg",
+    link: MAP_WIKI("Assassination_of_Mahatma_Gandhi")
+  },
+  {
+    place: "Delhi", left: 32.9, top: 27.1,
+    year: "1949", yearSort: 1949,
+    title: "The Constitution is Adopted",
+    text: "The Constituent Assembly formally adopts the Constitution of India after nearly three years of drafting under B. R. Ambedkar's chairmanship — the longest written constitution in the world, and independent India's founding document.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Constitution_of_India.jpg/330px-Constitution_of_India.jpg",
+    link: MAP_WIKI("Constitution_of_India")
+  },
+  {
+    place: "Delhi", left: 31.1, top: 28.6,
+    year: "1950", yearSort: 1950,
+    title: "India Becomes a Republic",
+    text: "The Constitution comes into force and India becomes a sovereign democratic republic, marked every year since as Republic Day — the final step from a British dominion to a fully self-governing nation.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/330px-Emblem_of_India.svg.png",
+    link: MAP_WIKI("Republic_Day_(India)")
   },
 ];
